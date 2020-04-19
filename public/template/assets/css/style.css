@@ -1,0 +1,336 @@
+#kontak .row{
+ padding: .25rem 0px;
+}
+#noTelpon{
+ color: black;
+ font-size: 14px;
+}
+
+.social_link{
+ display: block;
+}
+
+.btn-outline-link{
+ margin-left: 5px;
+ background-color: white;
+ padding: 2px;
+}
+
+.btn-outline-link img{
+ width: 25px;
+ height: auto;
+}
+
+
+#Header{
+ padding: 1rem 0px;
+ border-top: 1px solid #E0E0E0;
+ border-bottom: 1px solid #E0E0E0;
+}
+
+#Header .dropdown button{
+ color: black;
+ background-color: white;
+ border-color:  white;
+}
+
+#Header .dropdown-toggle::after{
+ content: none;
+}
+
+#Header .btn-menu{
+ color: black;
+ font-size: 1.2rem;
+}
+
+#Header .btn-menu-wrap{
+  padding-left: 0px;
+}
+
+
+#Header .btn-search{
+  color: black;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#Header .btn-search-wrap{
+  padding-right: 0px;
+  padding-top: 6px;
+}
+
+.isi-wrap {
+ padding: 20px !important; 
+}
+
+#Header .align-img{
+ text-align: left !important;
+}
+#Header .btn-konfirmasi{
+ display: inline-block;
+}
+
+.welcome-wrap {
+ /* padding: 10px 0px; */
+}
+
+.welcome-wrap .card {
+ color: #8a6d3b;
+ background-color: #fcf8e3;
+ border-color: #faebcc;
+}
+
+
+.wrap-form{
+ background-color: rgb(228, 240, 228);
+ padding: 15px;
+}
+
+.sub-judul{
+ color: #118c4a;
+ padding: 0px 0px 10px 0px;
+ border-bottom: 1px solid #118c4a;
+}
+
+#infoTambahan{
+  -webkit-animation: slide-down .3s ease-out;
+  -moz-animation: slide-down .3s ease-out;
+}
+@-webkit-keyframes slide-down {
+  0% { opacity: 0; -webkit-transform: translateY(0%); }   
+  100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+@-moz-keyframes slide-down {
+  0% { opacity: 0; -moz-transform: translateY(-0%); }   
+  100% { opacity: 1; -moz-transform: translateY(0); }
+}
+
+.info-tambahan {
+  cursor: pointer;
+  display: block;
+  font-size: .95rem;
+  margin-bottom: 0;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #28a745;
+}
+
+.custom-control-label::before{
+  background-color: #828282;
+}
+
+#metodePembayaran .card-header{
+ color: #118c4a;
+ background-color: rgb(228, 240, 228);
+}
+
+
+#metodePembayaran .custom-radio img{
+ width: 100px;
+}
+
+#metodePembayaran .custom-radio{
+ margin-bottom: 15px;
+}
+
+#metodePembayaran .btn-donasi{
+ width: 100%;
+ /* color: white; */
+}
+
+
+.select2-container--default .select2-selection--single{
+  border: 1px solid #ced4da !important;
+}
+.select2-container .select2-selection--single,
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+  height: 38px !important;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered{
+  padding-top: 3px
+}
+
+
+.welcome-wrap .card-body{
+ padding: 15px;
+}
+
+
+#pencarian{
+  background-color: #212121;
+  padding: 7px 0px;
+  -webkit-animation: slide-down .3s ease-out;
+  -moz-animation: slide-down .3s ease-out;
+
+}
+
+#pencarian .icon-cari{
+  color: #fff;
+}
+
+.search-width{
+  width: 80% !important;
+}
+
+.serach-width-pencarian{
+  width: 100% !important;
+}
+
+
+/*main{
+  margin-bottom: 6rem;
+  }*/
+
+#footer{
+ left: 0;
+ bottom: 0;
+ width: 100%;
+ }
+
+ #footer .card{
+   background-color: #118c4a;
+   color: white;
+
+ }
+
+ #footer .card-body{
+   padding: .9rem;
+ }
+
+ .select2-dropdown--below {
+   /* top: -2.8rem;*/ /*your input height*/
+ }
+
+ .info-pencarian{
+  font-size: .9rem;
+}
+
+#keyPencarian{
+  font-weight: bold;
+}
+
+.header-list{
+  border-bottom: 1px solid #648293;
+}
+
+.judul-artikel{
+  line-height: 1 !important;
+}
+
+.tanggal-artikel{
+  font-size: .85rem;
+  color: #9e9e9e;
+  line-height: 1 !important;
+}
+
+.main-list{
+  margin-top: 1rem;
+}
+
+.required-icon{
+  color: red;
+}
+
+.judul-menu{
+  margin-top: 1rem;
+}
+
+.form-control:disabled, .form-control[readonly] {
+  background-color: #f8fbff;
+  opacity: 1;
+  cursor: not-allowed;
+
+}
+
+#kodeKonfirmasi{
+  font-weight: bold;
+}
+
+.metode-pembayaran-ringkasan{
+  width: 120px;
+  margin-bottom: 1rem;
+}
+
+.body-ringkasan p {
+  font-size: .9rem;
+}
+
+.btn-copy{
+  margin-left:10px;
+  font-size: .7rem
+}
+
+#transferBank{
+  font-weight: bold;
+}
+
+#pengirimanBank p{
+  margin-bottom: .6rem;
+}
+
+.form-inline .form-control{
+  width: 100%;
+  /*margin-top: 1rem;*/
+}
+
+@media(max-width: 1199px){
+  #Header .btn-konfirmasi{
+    display: none;
+  }
+  #Header .align-img{
+    text-align: left !important;
+  }
+
+  #btnKonfirmasi{
+    color: black;
+  }
+  #Header .logo-header{
+    width: 120px;
+  }
+}
+
+
+@media(max-width: 980px){
+  #Header .align-img{
+    text-align: center !important;
+  }
+  #wrap-halaman {
+    padding-top: 22px;
+  }
+}
+
+
+
+@media(max-width: 579px){
+  #Header {
+    padding: 10px 0px;
+  }
+  #Header .logo-header{
+    width: 97px;
+  }
+  #Header .btn-search-wrap{
+    padding-top: 0px;
+  }
+  #metodePembayaran .react-tabs__tab {
+    font-size: .95rem;
+  }
+  .social_link{
+    display: none
+  }
+  #footer .card{
+    font-size: .85rem;
+  }
+  #footer .card-body{
+    padding: 1.25rem;
+  }
+
+  .card-header-ringkasan{
+    font-size: .9rem; 
+  }
+
+  #pembayaran-page p{
+    font-size: .95rem;
+  }
+}
