@@ -1,6 +1,6 @@
 	<main class="">
 	    <div class="container">
-	        <form>
+	        <form id="form-konfirmasi" method="post" enctype="multipart/form-data">
 	            <div class="row mt-3">
 	                <div class="col-12 ">
 	                    <h4 class="text-center">Konfirmasi Donasi</h4>
@@ -12,59 +12,60 @@
 	                            <div class="col-sm-10">
 	                                <div class="form-group">
 	                                    <label>No Refrensi</label>
-	                                    <input type="text" class="form-control" value="1664186456517591" id="noRefrensi" name="noRefrensi" disabled="">
+	                                    <input type="text" class="form-control" value="<?= $donasi->noRefensi ?>" id="noRefrensi" name="noRefrensi" disabled="">
+	                                    <input type="hidden" class="form-control" value="<?= $donasi->noRefensi ?>" name="noRefrensi">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>Nama Lengkap</label>
-	                                    <input type="text" class="form-control" value="Ahmad Rifaldi" id="namaLengkap" name="namaLengkap" disabled="">
+	                                    <input type="text" class="form-control" value="<?= $donatur->nama_donatur ?>" id="namaLengkap" name="namaLengkap" disabled="">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>Email</label>
-	                                    <input type="text" class="form-control" value="aldi4rifaldi@testing.com" id="email" name="email" disabled="">
+	                                    <input type="text" class="form-control" value="<?= $donatur->email ?>" id="email" name="email" disabled="">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>No Telpon</label>
-	                                    <input type="text" class="form-control" value="082292816274" id="noTelpon" name="noTelpon" disabled="">
+	                                    <input type="text" class="form-control" value="<?= $donatur->telepon ?>" id="noTelpon" name="noTelpon" disabled="">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>Bank Anda</label>
-	                                    <select style="width: 100%" class="select2" name="state">
-	                                        <option value="1">Bank BNI</option>
-	                                        <option value="2">Bank BRI</option>
-	                                        <option value="3">Bank BTN</option>
-	                                        <option value="4">Bank Danamon</option>
-	                                        <option value="5">Bank Mandiri</option>
-	                                        <option value="6">Bank Muamalat</option>
-	                                        <option value="7">Bank Permata</option>
-	                                        <option value="8">Bank Syariah Mandiri</option>
-	                                        <option value="9">BCA</option>
-	                                        <option value="10">BII Maybank</option>
-	                                        <option value="11">BNI Syariah</option>
-	                                        <option value="12">BRI Syariah</option>
-	                                        <option value="13">CIMB Niaga</option>
-	                                        <option value="14">CIMB Niaga Syariah</option>
-	                                        <option value="15">OCBC NISP</option>
-	                                        <option value="16">PANIN BANK</option>
+	                                    <select style="width: 100%" class="select2" name="bank">
+	                                        <option value="BNI">Bank BNI</option>
+	                                        <option value="BRI">Bank BRI</option>
+	                                        <option value="BTN">Bank BTN</option>
+	                                        <option value="Danamon">Bank Danamon</option>
+	                                        <option value="Mandiri">Bank Mandiri</option>
+	                                        <option value="Muamalat">Bank Muamalat</option>
+	                                        <option value="Permata">Bank Permata</option>
+	                                        <option value="Syariah Mandiri">Bank Syariah Mandiri</option>
+	                                        <option value="BCA">BCA</option>
+	                                        <option value="Maybank">BII Maybank</option>
+	                                        <option value="BNI Syariah">BNI Syariah</option>
+	                                        <option value="BRI Syariah">BRI Syariah</option>
+	                                        <option value="CIMB Niaga">CIMB Niaga</option>
+	                                        <option value="CIMB Niaga Syariah">CIMB Niaga Syariah</option>
+	                                        <option value="OCBC NISP">OCBC NISP</option>
+	                                        <option value="PANIN">PANIN BANK</option>
 	                                    </select>
 	                                </div>
 	                                <div class="form-group">
-	                                    <input type="text" class="form-control" placeholder="input cabang" id="cabangBank" name="cabangBank" required="">
+	                                    <input type="text" class="form-control" placeholder="input cabang" id="cabangBank" name="cabangBank">
 	                                </div>
 	                                <div class="form-group">
-	                                    <input type="number" class="form-control" placeholder="input no rekening" id="noRekening" name="noRekening" required="">
+	                                    <input type="number" class="form-control" placeholder="input no rekening" id="noRekening" name="noRekening">
 	                                </div>
 	                                <div class="form-group">
-	                                    <input type="text" class="form-control" placeholder="input nama pemilik" id="namaPemilik" name="namaPemilik" required="">
+	                                    <input type="text" class="form-control" placeholder="input nama pemilik" id="namaPemilik" name="namaPemilik">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>Bank Tujuan</label>
-	                                    <input type="text" class="form-control" value="BNI Syariah | Yayasan Dompet Dhuafa Republika | 0253.710.921" id="email" name="email" disabled="">
+	                                    <input type="text" class="form-control" value="<?= 'Bank ' . $pembayaran->metode_pembayaran . ' | ' . $pembayaran->atas_nama . ' | ' . $pembayaran->norek ?>" id="bankTujuan" name="bankTujuan" disabled="">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>Jumlah</label>
 	                                    <div class="input-group">
 	                                        <div class="input-group-prepend"><span class="input-group-text">Rp</span></div>
-	                                        <input type="text" class="form-control" value="10619" id="totalDonasi" name="totalDonasi" disabled="">
+	                                        <input type="text" class="form-control" value="<?= $donasi->totalPembayaran ?>" id="totalDonasi" name="totalDonasi" disabled="">
 	                                    </div>
 	                                </div>
 	                                <div class="form-group">

@@ -4,14 +4,13 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class DonasiModel extends Model
+class KonfirmasiDonasiModel extends Model
 {
-    protected $table = 'data_donasi';
-    protected $primaryKey = 'id_donasi';
+    protected $table = 'data_konfirmasi_donasi';
+    protected $primaryKey = 'id_konfirmasi_donasi';
 
     protected $returnType = 'object';
-
-    protected $allowedFields = ['id_donasi', 'id_donatur', 'id_jenis_donasi', 'id_subjenis_donasi', 'id_target_donasi', 'id_metode_pembayaran', 'nominal', 'kode_unik', 'total_pembayaran', 'status'];
+    protected $allowedFields = ['id_konfirmasi_donasi', 'id_donasi', 'bank_nama', 'bank_cabang', 'bank_norek', 'bank_atas_nama', 'tanggal_bayar', 'bukti_pembayaran', 'catatan'];
 
 
     protected $useTimestamps = true;
@@ -20,13 +19,10 @@ class DonasiModel extends Model
     protected $deletedField  = '';
 
     protected $validationRules = [
+        'id_konfirmasi_donasi'  => 'required',
         'id_donasi'             => 'required',
-        'id_donatur'            => 'required',
-        'id_jenis_donasi'       => 'required',
-        'id_metode_pembayaran'  => 'required',
-        'nominal'               => 'required',
-        'kode_unik'             => 'required',
-        'total_pembayaran'      => 'required',
+        'tanggal_bayar'         => 'required',
+        'bukti_pembayaran'      => 'required',
     ];
     protected $validationMessages = [];
     protected $skipValidation     = false;
@@ -45,8 +41,8 @@ class DonasiModel extends Model
     public function getNewPK()
     {
         do {
-            $id = mt_rand(1, 9) . random_string('numeric', 15);
-        } while ($this->where(['id_donasi' => $id])->countAllResults() > 0);
+            $id = mt_rand(1, 9) . random_string('numeric', 7);
+        } while ($this->where(['id_konfirmasi_donasi' => $id])->countAllResults() > 0);
         return $id;
     }
 }

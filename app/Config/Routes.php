@@ -33,7 +33,8 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
 $routes->get('/', 'Donatur\Home::index');
-$routes->get('donatur/konfirmasi/(:num)', 'Donatur\Konfirmasi::konfirmasi_donasi/$1');
+$routes->match(['get', 'post'], 'donatur/konfirmasi/(:num)', 'Donatur\Konfirmasi::konfirmasi_donasi/$1');
+// $routes->get('donatur/konfirmasi/(:num)', 'Donatur\Konfirmasi::konfirmasi_donasi/$1');
 
 /**
  * --------------------------------------------------------------------

@@ -38,7 +38,7 @@ if (!function_exists('upload_path')) {
     function upload_path($path = NULL)
     {
         $link = ($path) ? $path . '/' : '';
-        return 'uploads/' . $link;
+        return 'writable/uploads/receipt/' . $link;
     }
 }
 
