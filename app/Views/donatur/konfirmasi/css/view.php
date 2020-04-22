@@ -1,0 +1,8 @@
+    <style>
+        #footer {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+    </style>

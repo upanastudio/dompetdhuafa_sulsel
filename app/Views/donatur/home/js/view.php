@@ -96,7 +96,7 @@
                         .done(function(response) {
                             // console.log(response);
                             if (response.noRef) {
-                                window.location.href = `<?= site_url('donatur/home/ringkasan-donasi/') ?>${response.noRef}`;
+                                window.location.href = `<?= site_url('donatur/ringkasan/') ?>${response.noRef}`;
                             }
                         })
                         .fail(function() {
@@ -104,8 +104,6 @@
                         });
                 }
             });
-
-
         };
 
         var formValidation = function() {
@@ -150,15 +148,6 @@
     });
 </script>
 <script>
-    function pencarian() {
-        var cari = document.getElementById("pencarian");
-        if (cari.style.display === "none") {
-            cari.style.display = "block";
-        } else {
-            cari.style.display = "none";
-        }
-    }
-
     function infoTambahan() {
         var info = document.getElementById("infoTambahan");
         if (info.style.display === "none") {
@@ -168,6 +157,15 @@
             info.style.display = "none";
 
             $('.info-tambahan').text('[+] Tampilkan Informasi tambahan')
+        }
+    }
+
+    function pencarian() {
+        var cari = document.getElementById("pencarian");
+        if (cari.style.display === "none") {
+            cari.style.display = "block";
+        } else {
+            cari.style.display = "none";
         }
     }
 </script>

@@ -104,7 +104,7 @@
                             <p>Metode pembayaran menggunakan</p>
                             <img id="metodePembayaran" name="metodePembayaran" class="metode-pembayaran-ringkasan" src="<?= $aset_url . '/media/' . $pembayaran->image ?>" alt="">
                             <p>Silahkan klik tombol bayar untuk melanjutkan ke portal pembayaran</p>
-                            <a href="<?= site_url('donatur/home/pembayaran/') . $donasi->noRefensi ?>" class="btn btn-lg btn-success">
+                            <a href="<?= site_url('donatur/pembayaran/') . $donasi->noRefensi ?>" class="btn btn-lg btn-success">
                                 Bayar Sekarang !
                             </a>
                         </div>

@@ -24,7 +24,7 @@ class Home extends BaseController
         $data = [
             'title'             => 'Donasi Online Dompet Dhuafa - Portal Donasi Dompet Dhuafa',
             'aset_url'          => assets(),
-            'konfirmasi_donasi' => homepage_url('konfirmasi-donasi'),
+            'konfirmasi_donasi' => homepage_url('konfirmasi'),
             'jenis_donasi'      => $model->getData(),
             'isi'               => 'donatur/home/view',
             'js'                => 'donatur/home/js/view',
@@ -90,75 +90,6 @@ class Home extends BaseController
             $this->db->transCommit();
             return $this->respondCreated(['noRef' => $donasiId, 'message' => 'Donasi berhasil ditambahkan']);
         }
-    }
-
-    public function ringkasan_donasi($noRef = NULL)
-    {
-        $donasiModel = new DonasiModel();
-        $donaturModel = new DonaturModel();
-        $mpModel = new MetodePembayaranModel();
-        $jdModel = new JenisDonasiModel();
-        $sjdModel = new SubjenisDonasiModel();
-        $tdModel = new TargetDonasiModel();
-
-        $donasiData = $donasiModel->where(['id_donasi' => $noRef])->first();
-        $donasi = (object) [
-            'noRefensi'         => $donasiData->id_donasi,
-            'jenisDonasi'       => $jdModel->where(['id_jenis_donasi' => $donasiData->id_jenis_donasi])->first()->jenis_donasi,
-            'subjenisDonasi'    => ($donasiData->id_subjenis_donasi) ? $sjdModel->where(['id_subjenis_donasi' => $donasiData->id_subjenis_donasi])->first()->subjenis_donasi : '',
-            'targetDonasi'      => ($donasiData->id_target_donasi) ? $tdModel->where(['id_target_donasi' => $donasiData->id_target_donasi])->first()->target_donasi : '',
-            'nominal'           => $donasiData->nominal,
-            'kodeUnik'          => $donasiData->kode_unik,
-            'totalPembayaran'   => $donasiData->total_pembayaran,
-        ];
-
-        $data = [
-            'title'             => 'Donasi Online Dompet Dhuafa - Portal Donasi Dompet Dhuafa',
-            'aset_url'          => assets(),
-            'konfirmasi_donasi' => homepage_url('konfirmasi-donasi'),
-            'donasi'            => $donasi,
-            'donatur'           => $donaturModel->where(['id_donatur' => $donasiData->id_donatur])->first(),
-            'pembayaran'        => $mpModel->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first(),
-            'isi'               => 'donatur/home/ringkasan',
-            'js'                => '',
-            'css'               => ''
-        ];
-        return view('donatur/_layout/wrapper', $data);
-    }
-
-    public function pembayaran($noRef = NULL)
-    {
-        $donasiModel = new DonasiModel();
-        $donaturModel = new DonaturModel();
-        $mpModel = new MetodePembayaranModel();
-        $jdModel = new JenisDonasiModel();
-        $sjdModel = new SubjenisDonasiModel();
-        $tdModel = new TargetDonasiModel();
-
-        $donasiData = $donasiModel->where(['id_donasi' => $noRef])->first();
-        $donasi = (object) [
-            'noRefensi'         => $donasiData->id_donasi,
-            'jenisDonasi'       => $jdModel->where(['id_jenis_donasi' => $donasiData->id_jenis_donasi])->first()->jenis_donasi,
-            'subjenisDonasi'    => ($donasiData->id_subjenis_donasi) ? $sjdModel->where(['id_subjenis_donasi' => $donasiData->id_subjenis_donasi])->first()->subjenis_donasi : '',
-            'targetDonasi'      => ($donasiData->id_target_donasi) ? $tdModel->where(['id_target_donasi' => $donasiData->id_target_donasi])->first()->target_donasi : '',
-            'nominal'           => $donasiData->nominal,
-            'kodeUnik'          => $donasiData->kode_unik,
-            'totalPembayaran'   => $donasiData->total_pembayaran,
-            'tanggalTransaksi' => $donasiData->iat,
-        ];
-
-        $data = [
-            'title'             => 'Donasi Online Dompet Dhuafa - Invoice ' . $donasiData->id_donasi,
-            'aset_url'          => assets(),
-            'konfirmasi_donasi' => homepage_url('konfirmasi-donasi'),
-            'donasi'            => $donasi,
-            'donatur'           => $donaturModel->where(['id_donatur' => $donasiData->id_donatur])->first(),
-            'pembayaran'        => $mpModel->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first(),
-            'isi'               => 'donatur/home/pembayaran',
-            'js'                => 'donatur/home/js/pembayaran',
-            'css'               => 'donatur/home/css/pembayaran'
-        ];
-        return view('donatur/_layout/wrapper', $data);
     }
 
     public function get_subdonasi()

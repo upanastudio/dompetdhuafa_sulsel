@@ -54,7 +54,7 @@
                             </button>
                         </div>
                         <div class="col-md">
-                            <a href="<?= $konfirmasi_donasi ?>" class="btn btn-block btn-success no-print">
+                            <a href="<?= site_url('donatur/konfirmasi/') . $donasi->noRefensi ?>" class="btn btn-block btn-success no-print">
                                 Konfirmasi Pembayaran
                             </a>
                         </div>
