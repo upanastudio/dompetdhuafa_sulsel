@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 19/04/2020 23:07:28
+ Date: 23/04/2020 06:26:58
 */
 
 SET NAMES utf8mb4;
@@ -22,10 +22,13 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `data_donasi`;
 CREATE TABLE `data_donasi`  (
-  `id_data_donasi` int(11) NOT NULL,
-  `id_donasi` int(20) NULL DEFAULT NULL COMMENT 'nomor referensi/kode konfirmasi',
+  `id_data_donasi` int(11) NOT NULL AUTO_INCREMENT,
+  `id_donasi` varchar(16) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT 'nomor referensi/kode konfirmasi',
   `id_donatur` int(11) NULL DEFAULT NULL,
+  `id_jenis_donasi` int(11) NULL DEFAULT NULL,
+  `id_subjenis_donasi` int(11) NULL DEFAULT NULL,
   `id_target_donasi` int(11) NULL DEFAULT NULL,
+  `id_metode_pembayaran` int(11) NULL DEFAULT NULL,
   `nominal` int(50) NULL DEFAULT NULL,
   `kode_unik` int(10) NULL DEFAULT NULL,
   `total_pembayaran` int(50) NULL DEFAULT NULL COMMENT 'nominal+kode_unik',
@@ -36,9 +39,24 @@ CREATE TABLE `data_donasi`  (
   UNIQUE INDEX `id_donasi`(`id_donasi`) USING BTREE,
   INDEX `id_donatur`(`id_donatur`) USING BTREE,
   INDEX `id_target_donasi`(`id_target_donasi`) USING BTREE,
+  INDEX `id_metode_pembayaran`(`id_metode_pembayaran`) USING BTREE,
+  INDEX `id_jenis_donasi`(`id_jenis_donasi`) USING BTREE,
+  INDEX `id_subjenis_donasi`(`id_subjenis_donasi`) USING BTREE,
   CONSTRAINT `data_donasi_ibfk_1` FOREIGN KEY (`id_donatur`) REFERENCES `data_donatur` (`id_donatur`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `data_donasi_ibfk_2` FOREIGN KEY (`id_target_donasi`) REFERENCES `master_target_donasi` (`id_target_donasi`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+  CONSTRAINT `data_donasi_ibfk_2` FOREIGN KEY (`id_target_donasi`) REFERENCES `master_target_donasi` (`id_target_donasi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `data_donasi_ibfk_3` FOREIGN KEY (`id_metode_pembayaran`) REFERENCES `master_metode_pembayaran` (`id_metode_pembayaran`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `data_donasi_ibfk_4` FOREIGN KEY (`id_jenis_donasi`) REFERENCES `master_jenis_donasi` (`id_jenis_donasi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `data_donasi_ibfk_5` FOREIGN KEY (`id_subjenis_donasi`) REFERENCES `master_subjenis_donasi` (`id_subjenis_donasi`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of data_donasi
+-- ----------------------------
+INSERT INTO `data_donasi` VALUES (7, '3159603183605277', 20926841, 91077432, 56880199, NULL, 76957036, 200000, 297, 200297, '0', '2020-04-21 09:56:53', '2020-04-21 23:14:21');
+INSERT INTO `data_donasi` VALUES (9, '9108076948953142', 20926841, 72584460, NULL, NULL, 88246397, 250000, 662, 250662, '0', '2020-04-21 10:35:14', '2020-04-21 10:35:14');
+INSERT INTO `data_donasi` VALUES (10, '5634351952180497', 82693815, 72584460, NULL, NULL, 88246397, 100000, 748, 100748, '0', '2020-04-21 10:38:27', '2020-04-21 10:38:27');
+INSERT INTO `data_donasi` VALUES (11, '3600635517889471', 99513672, 49014882, 99102513, NULL, 49288787, 20000, 473, 20473, '0', '2020-04-21 10:44:31', '2020-04-21 10:44:31');
+INSERT INTO `data_donasi` VALUES (12, '7513040862899653', 82504789, 72584460, 67350812, 22152874, 77823354, 400000, 812, 400812, '1', '2020-04-22 09:45:43', '2020-04-22 17:05:35');
 
 -- ----------------------------
 -- Table structure for data_donatur
@@ -48,6 +66,7 @@ CREATE TABLE `data_donatur`  (
   `id_data_donatur` int(11) NOT NULL AUTO_INCREMENT,
   `id_donatur` int(11) NULL DEFAULT NULL,
   `nama_donatur` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `sapaan` enum('Bapak','Ibu','Saudara','Saudari') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `telepon` varchar(16) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `alamat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
@@ -56,22 +75,32 @@ CREATE TABLE `data_donatur`  (
   `npwp` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `negara` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `provinsi` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `kota/kabupaten` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `kota` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `kodepos` varchar(16) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `iat` datetime(0) NULL DEFAULT NULL,
   `uat` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id_data_donatur`) USING BTREE,
-  UNIQUE INDEX `id_donatur`(`id_donatur`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+  UNIQUE INDEX `id_donatur`(`id_donatur`) USING BTREE,
+  UNIQUE INDEX `telepon`(`telepon`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of data_donatur
+-- ----------------------------
+INSERT INTO `data_donatur` VALUES (7, 73821590, 'Ari', 'Bapak', 'ari@ari.com', '0801213123', '', 'personal', '', '', 'Indonesia', '', '', '', '2020-04-21 09:15:23', '2020-04-21 09:15:23');
+INSERT INTO `data_donatur` VALUES (9, 20926841, 'Akhmad', 'Bapak', 'akhmad@mail.com', '121212121212', '', 'personal', '', '', 'Indonesia', '', '', '', '2020-04-21 09:56:53', '2020-04-21 09:56:53');
+INSERT INTO `data_donatur` VALUES (10, 82693815, 'Adi', 'Saudara', 'adi@dasdad.com', '082723123123', '', 'personal', '', '', 'Indonesia', '', '', '', '2020-04-21 10:38:27', '2020-04-21 10:38:27');
+INSERT INTO `data_donatur` VALUES (11, 99513672, 'Rahmad', 'Bapak', 'rahmad@mail.com', '0231312313', '', 'personal', '', '', 'Indonesia', '', '', '', '2020-04-21 10:44:31', '2020-04-21 10:44:31');
+INSERT INTO `data_donatur` VALUES (12, 82504789, 'Weeny', 'Ibu', 'w33ny@mail.com', '0321237312', '', 'personal', '', '', 'Indonesia', '', NULL, '', '2020-04-22 09:45:43', '2020-04-22 09:45:43');
 
 -- ----------------------------
 -- Table structure for data_konfirmasi_donasi
 -- ----------------------------
 DROP TABLE IF EXISTS `data_konfirmasi_donasi`;
 CREATE TABLE `data_konfirmasi_donasi`  (
-  `id_data_konfirmasi_donasi` int(11) NOT NULL,
+  `id_data_konfirmasi_donasi` int(11) NOT NULL AUTO_INCREMENT,
   `id_konfirmasi_donasi` int(11) NULL DEFAULT NULL,
-  `id_donasi` int(20) NULL DEFAULT NULL,
+  `id_donasi` varchar(16) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `bank_nama` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `bank_cabang` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `bank_norek` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -83,9 +112,14 @@ CREATE TABLE `data_konfirmasi_donasi`  (
   `uat` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id_data_konfirmasi_donasi`) USING BTREE,
   UNIQUE INDEX `id_konfirmasi_donasi`(`id_konfirmasi_donasi`) USING BTREE,
-  INDEX `id_donasi`(`id_donasi`) USING BTREE,
+  UNIQUE INDEX `id_donasi`(`id_donasi`) USING BTREE,
   CONSTRAINT `data_konfirmasi_donasi_ibfk_1` FOREIGN KEY (`id_donasi`) REFERENCES `data_donasi` (`id_donasi`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 40 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of data_konfirmasi_donasi
+-- ----------------------------
+INSERT INTO `data_konfirmasi_donasi` VALUES (39, 52539418, '7513040862899653', 'BNI', '', '', '', '2020-04-23 00:00:00', '1587593135_9387a0b86a20d380c378.png', 'finally', '2020-04-22 17:05:35', '2020-04-22 17:05:35');
 
 -- ----------------------------
 -- Table structure for master_jenis_donasi
@@ -116,7 +150,7 @@ DROP TABLE IF EXISTS `master_metode_pembayaran`;
 CREATE TABLE `master_metode_pembayaran`  (
   `id_master_metode_pembayaran` int(11) NOT NULL AUTO_INCREMENT,
   `id_metode_pembayaran` int(11) NULL DEFAULT NULL,
-  `metode_pembarayan` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `metode_pembayaran` enum('BNI Syariah','BCA','Mandiri','Muamalat') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `norek` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `atas_nama` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `type` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -130,13 +164,12 @@ CREATE TABLE `master_metode_pembayaran`  (
 -- ----------------------------
 -- Records of master_metode_pembayaran
 -- ----------------------------
-INSERT INTO `master_metode_pembayaran` VALUES (1, 30550240, 'Bank BNI', NULL, NULL, 'donasi', NULL, '2020-04-19 04:11:49', '2020-04-19 09:44:48');
-INSERT INTO `master_metode_pembayaran` VALUES (2, 76957036, 'Bank Mandiri', '152.0011.7600.51', 'Yayasan Dompet Dhuafa Republika Rekening Zakat ', '	donasi', NULL, '2020-04-19 04:11:49', '2020-04-19 09:44:53');
-INSERT INTO `master_metode_pembayaran` VALUES (3, 42256129, 'Bank BCA', '7890387777', 'Yayasan Dompet Dhuafa Republika Rekening Zakat ', '	donasi', NULL, '2020-04-19 04:11:49', '2020-04-19 09:44:54');
-INSERT INTO `master_metode_pembayaran` VALUES (4, 45259423, 'Bank Muamalat', '8010048527 ', 'Yayasan Dompet Dhuafa Republika Rekening Zakat ', '	donasi', NULL, '2020-04-19 04:11:49', '2020-04-19 09:44:55');
-INSERT INTO `master_metode_pembayaran` VALUES (5, 88246397, 'BNI Syariah', '015.938.7145', NULL, 'sedekah', NULL, '2020-04-19 09:46:12', '2020-04-19 09:46:15');
-INSERT INTO `master_metode_pembayaran` VALUES (6, 49288787, 'Bank Muamalat ', '801.004.8528', NULL, 'sedekah', NULL, '2020-04-19 09:46:12', '2020-04-19 09:46:16');
-INSERT INTO `master_metode_pembayaran` VALUES (7, 77823354, 'Bank Mandiri', '152.0022.9992.92 ', NULL, 'sedekah', NULL, '2020-04-19 09:46:12', '2020-04-19 09:46:16');
+INSERT INTO `master_metode_pembayaran` VALUES (2, 76957036, 'Mandiri', '152.0011.7600.51', 'Yayasan Dompet Dhuafa Republika Rekening Zakat ', 'donasi', 'logo-mandiri.png', '2020-04-19 04:11:49', '2020-04-22 00:01:37');
+INSERT INTO `master_metode_pembayaran` VALUES (3, 42256129, 'BCA', '789.038.7777', 'Yayasan Dompet Dhuafa Republika Rekening Zakat ', 'donasi', 'logo-bca.png', '2020-04-19 04:11:49', '2020-04-22 00:01:57');
+INSERT INTO `master_metode_pembayaran` VALUES (4, 45259423, 'Muamalat', '801.004.8527 ', 'Yayasan Dompet Dhuafa Republika Rekening Zakat ', 'donasi', 'logo-muamalat.png', '2020-04-19 04:11:49', '2020-04-22 00:02:11');
+INSERT INTO `master_metode_pembayaran` VALUES (5, 88246397, 'BNI Syariah', '015.938.7145', 'Yayasan Dompet Dhuafa Republika Rekening Zakat', 'sedekah', 'logo-bni.png', '2020-04-19 09:46:12', '2020-04-22 06:23:53');
+INSERT INTO `master_metode_pembayaran` VALUES (6, 49288787, 'Muamalat', '801.004.8528', 'Yayasan Dompet Dhuafa Republika Rekening Zakat', 'sedekah', 'logo-muamalat.png', '2020-04-19 09:46:12', '2020-04-22 00:02:12');
+INSERT INTO `master_metode_pembayaran` VALUES (7, 77823354, 'Mandiri', '152.0022.9992.92 ', 'Yayasan Dompet Dhuafa Republika Rekening Zakat', 'sedekah', 'logo-mandiri.png', '2020-04-19 09:46:12', '2020-04-22 00:01:39');
 
 -- ----------------------------
 -- Table structure for master_subjenis_donasi
