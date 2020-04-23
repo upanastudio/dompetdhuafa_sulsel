@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="col align-img">
-                    <a href="/"><img src="<?= $aset_url ?>media/logo_dd.png" class="logo-header" alt="dompetDhuafa" /></a>
+                    <a href="<?= site_url() ?>"><img src="<?= $aset_url ?>media/logo_dd.png" class="logo-header" alt="dompetDhuafa" /></a>
                 </div>
                 <div class="col text-right btn-search-wrap no-print">
                     <a href="<?= $konfirmasi_donasi ?>" class="btn btn-link btn-search btn-konfirmasi">
