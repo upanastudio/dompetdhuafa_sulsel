@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use App\Controllers\BaseController;
+use App\Controllers\Admin\BaseController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\DonaturModel;
 use function App\Helpers\admin_url;
@@ -14,6 +14,10 @@ class Donatur extends BaseController
 	use ResponseTrait;
 	public function index()
 	{
+		if (!logged_in()) {
+			return redirect()->to('/login');
+		}
+
 		$donaturModel = new DonaturModel();
 
 		//get all data

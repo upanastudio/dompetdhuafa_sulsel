@@ -13,7 +13,7 @@
       <ul class="navbar-nav ml-auto">
 
         <li class="nav-item">
-          <a href="<?= $logout_url ?>" class="btn btn-sm btn-outline-dark">
+          <a href="<?= base_url("logout") ?>" class="btn btn-sm btn-outline-dark">
             <i class="fa fa-sign-out-alt" style="margin-right: 5px"></i> Logout
           </a>
         </li>

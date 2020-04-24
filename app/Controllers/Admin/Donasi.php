@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use App\Controllers\BaseController;
+use App\Controllers\Admin\BaseController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\DonasiModel;
 use function App\Helpers\admin_url;
@@ -13,6 +13,11 @@ class Donasi extends BaseController
 {
     use ResponseTrait;
     public function index(){
+
+		if (!logged_in()) {
+			return redirect()->to('/login');
+		}
+
 		$donasiModel = new DonasiModel();
 
 		//get all data
