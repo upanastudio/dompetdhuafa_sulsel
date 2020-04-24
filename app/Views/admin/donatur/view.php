@@ -52,7 +52,7 @@
 									<?php foreach ($data as $item) { ?>
 										<tr>
 											<td><?= ++$counter ?></td>
-											<td><?= $item->sapaan . ", ".  $item->nama_donatur ?></td>
+											<td><?= $item->sapaan . " ".  $item->nama_donatur ?></td>
 											<td><?= $item->email ?></td>
 											<td><?= $item->telepon ?></td>
 											<td><?= $item->metode_pembayaran ?></td>

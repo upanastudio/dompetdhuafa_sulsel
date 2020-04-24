@@ -55,7 +55,7 @@
 											<td><?= ++$counter ?></td>
 											<td><?= $item->id_donasi ?></td>
 											<td><?= date_format(date_create($item->tanggal_bayar), "d M Y") ?></td>
-											<td><?= $item->sapaan . ", " .  $item->nama_donatur ?></td>
+											<td><?= $item->sapaan . " " .  $item->nama_donatur ?></td>
 											<td><?= $item->metode_pembayaran ?></td>
 											<td><?= $item->bank_nama ?></td>
 											<td>Rp. <?= $item->total_pembayaran ?></td>

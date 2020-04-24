@@ -50,7 +50,7 @@
 											<td><?= $item->jenis_donasi ?></td>
 											<td><?= $item->subjenis_donasi ?></td>
 											<td><?= $item->target_donasi ?></td>
-											<td><?= $item->nama_donatur ?></td>
+											<td><?= $item->sapaan . " " .  $item->nama_donatur ?></td>
 											<td><?= $item->id_donasi ?></td>
 											<td>
 												<?php if ($item->status == 0) : ?>
