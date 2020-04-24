@@ -23,7 +23,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-    public $baseURL = 'http://localhost:8080/';
+    public $baseURL = 'https://projects.upanastudio.com/dompet_dhuafa/';
 
     /*
 	|--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ class App extends BaseConfig
 	|
 	| WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 	*/
-    public $uriProtocol = 'REQUEST_URI';
+    public $uriProtocol = 'PATH_INFO';
 
     /*
 	|--------------------------------------------------------------------------
