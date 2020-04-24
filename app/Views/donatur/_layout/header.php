@@ -29,6 +29,56 @@
         </div>
     </section>
 
+    <?php if (isset($carousel)) : ?>
+        <section id="desktop-carousel">
+            <div id="carouselDesktop" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner ">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100 img-carousel" src="<?= $aset_url ?>media/carousel-1.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 img-carousel" src="<?= $aset_url ?>media/carousel-2.jpg" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 img-carousel" src="<?= $aset_url ?>media/carousel-3.jpg" alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselDesktop" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselDesktop" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </section>
+
+        <section id="mobile-carousel" style="display: none">
+            <div id="carouselMobile" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner ">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100 img-carousel" src="<?= $aset_url ?>media/carousel-1a.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 img-carousel" src="<?= $aset_url ?>media/carousel-2a.jpg" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 img-carousel" src="<?= $aset_url ?>media/carousel-3a.jpg" alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselMobile" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselMobile" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </section>
+    <?php endif; ?>
+
     <section id="pencarian" style="display: none">
         <div class="container">
             <div class="row">

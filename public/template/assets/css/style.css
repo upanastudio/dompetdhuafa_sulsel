@@ -365,6 +365,8 @@ a:not([href]):not([tabindex]):hover{
   height: auto;
 }
 
+
+
 @media(max-width: 1199px){
   #Header .btn-konfirmasi{
     display: none;
@@ -422,6 +424,14 @@ a:not([href]):not([tabindex]):hover{
 
   #pembayaran-page p{
     font-size: .95rem;
+  }
+
+  #mobile-carousel{
+    display: block !important;
+  }
+
+  #desktop-carousel{
+    display: none;
   }
 
 

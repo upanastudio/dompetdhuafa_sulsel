@@ -26,6 +26,7 @@ class Home extends BaseController
             'title'             => 'Donasi Online Dompet Dhuafa - Portal Donasi Dompet Dhuafa',
             'aset_url'          => assets(),
             'konfirmasi_donasi' => homepage_url('konfirmasi'),
+            'carousel'          => true,
             'jenis_donasi'      => $model->getData(),
             'isi'               => 'donatur/home/view',
             'js'                => 'donatur/home/js/view',
