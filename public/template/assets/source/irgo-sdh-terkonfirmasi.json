@@ -1,0 +1,51 @@
+{
+     "iTotalRecords": 10,
+    "iTotalDisplayRecords": 10,
+    "sEcho": 0,
+    "sColumns": "",
+    "aaData": [{
+            "no": 1,
+            "idRequest": "13512A",
+            "tanggalRequest":"20 Nov 2019",
+            "tanggalPenerimaan" : "21 Nov 2019",
+            "status" : "done",
+            "pemesanan" : "Outlet Nipah",
+             "pemesan" : "Outlet Nipah",
+            "supplier" : "Berkah Mas",
+            "aksi": null
+        },
+        {
+            "no": 2,
+            "idRequest": "13512A",
+            "tanggalRequest":"21 Nov 2019",
+            "tanggalPenerimaan" : "22 Nov 2019",
+            "status" : "done",
+            "pemesanan" : "Outlet Nipah",
+             "pemesan" : "Outlet Nipah",
+            "supplier" : "Sukses Sejuk",
+            "aksi": null
+        },
+        {
+            "no": 3,
+              "idRequest": "13512A",
+            "tanggalRequest":"22 Nov 2019",
+            "tanggalPenerimaan" : "23 Nov 2019",
+            "status" : "done",
+            "pemesanan" : "Outlet Perintis",
+            "pemesan" : "Outlet Perintis",
+            "supplier" : "Layton",
+            "aksi": null
+        },
+        {
+            "no": 4,
+             "idRequest": "13512A",
+            "tanggalRequest":"23 Nov 2019",
+            "tanggalPenerimaan" : "24 Nov 2019",
+            "status" : "distributed",
+            "pemesanan" : "Outlet Perintis",
+            "pemesan" : "Outlet Perintis",
+            "supplier" : "Ranch pura",
+            "aksi": null
+        }
+    ]
+}

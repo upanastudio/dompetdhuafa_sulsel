@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Donatur;
 
+use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\DonasiModel;
 use App\Models\DonaturModel;
@@ -25,6 +26,7 @@ class Home extends BaseController
             'title'             => 'Donasi Online Dompet Dhuafa - Portal Donasi Dompet Dhuafa',
             'aset_url'          => assets(),
             'konfirmasi_donasi' => homepage_url('konfirmasi'),
+            'carousel'          => true,
             'jenis_donasi'      => $model->getData(),
             'isi'               => 'donatur/home/view',
             'js'                => 'donatur/home/js/view',

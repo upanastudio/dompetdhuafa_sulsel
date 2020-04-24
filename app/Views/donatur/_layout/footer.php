@@ -1,7 +1,7 @@
 <section id=footer class="no-print">
     <div class="card">
         <div class="card-body text-center">
-            Copyright © 2020 Portal Donasi Dompet Dhuafa
+            Copyright © 2020 Portal Donasi Dompet Dhuafa | Powered by <a href="http://bit.ly/upanastudio" target="_blank" style="color:whitesmoke">Upana Studio</a>.
         </div>
     </div>
 </section>

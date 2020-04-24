@@ -17,7 +17,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Donasi');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(true);
 $routes->set404Override();
@@ -31,7 +31,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-// $routes->get('/', 'Home::index');
+// $routes->get('/', 'Donasi::index');
 $routes->get('/', 'Donatur\Home::index');
 $routes->match(['get', 'post'], 'donatur/konfirmasi/(:num)', 'Donatur\Konfirmasi::konfirmasi_donasi/$1');
 // $routes->get('donatur/konfirmasi/(:num)', 'Donatur\Konfirmasi::konfirmasi_donasi/$1');
@@ -49,6 +49,10 @@ $routes->match(['get', 'post'], 'donatur/konfirmasi/(:num)', 'Donatur\Konfirmasi
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
+$routes->add("admin/donasi", "Admin\Donasi");
+$routes->add("admin/donatur", "Admin\Donatur");
+$routes->add("admin/konfirmasi-donasi", "Admin\KonfirmasiDonasi");
+
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
