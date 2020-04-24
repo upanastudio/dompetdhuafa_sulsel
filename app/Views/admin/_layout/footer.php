@@ -1,19 +1,30 @@
-<section id=footer class="no-print">
-    <div class="card">
-        <div class="card-body text-center">
-            Copyright © 2020 Portal Donasi Dompet Dhuafa
-        </div>
-    </div>
-</section>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="<?= $aset_url ?>js/jquery-3.5.0-min.js"></script>
-<script src="<?= $aset_url ?>js/popper.min.js"></script>
-<script src="<?= $aset_url ?>js/bootstrap.min.js"></script>
-<script src="<?= $aset_url ?>js/jquery.mask.min.js"></script>
-<script src="<?= $aset_url ?>js/jquery.validate.js"></script>
-<script src="<?= $aset_url ?>js/select2.min.js"></script>
-<script src="<?= $aset_url ?>js/selectize.min.js"></script>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer text-center">
+      COPYRIGHT &copy; 2020 <a href="#">DOMPET DHUAFA</a>.</strong>
+      <div class="float-right d-none d-sm-inline-block">
+      </div>
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="<?= $assets_url ?>plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="<?= $assets_url ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= $assets_url ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="<?= $assets_url ?>js/adminlte.js"></script>
 
 <?php if ($js) echo view($js); ?>
 

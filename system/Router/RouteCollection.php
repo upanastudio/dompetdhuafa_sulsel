@@ -69,7 +69,7 @@ class RouteCollection implements RouteCollectionInterface
 	 *
 	 * @var string
 	 */
-	protected $defaultController = 'Home';
+	protected $defaultController = 'Donasi';
 
 	/**
 	 * The name of the default method to use
@@ -716,11 +716,11 @@ class RouteCollection implements RouteCollectionInterface
 
 	/**
 	 * Group a series of routes under a single URL segment. This is handy
-	 * for grouping items into an admin area, like:
+	 * for grouping items into an Admin area, like:
 	 *
 	 * Example:
-	 *     // Creates route: admin/users
-	 *     $route->group('admin', function() {
+	 *     // Creates route: Admin/users
+	 *     $route->group('Admin', function() {
 	 *            $route->resource('users');
 	 *     });
 	 *
@@ -1286,9 +1286,9 @@ class RouteCollection implements RouteCollectionInterface
 	 * the parameter name on a colon to separate the filter name from the parameter list,
 	 * and the splitting the result on commas. So:
 	 *
-	 *    'role:admin,manager'
+	 *    'role:Admin,manager'
 	 *
-	 * has a filter of "role", with parameters of ['admin', 'manager'].
+	 * has a filter of "role", with parameters of ['Admin', 'manager'].
 	 *
 	 * @param string $search
 	 *

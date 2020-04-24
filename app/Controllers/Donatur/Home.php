@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Donatur;
 
+use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\DonasiModel;
 use App\Models\DonaturModel;

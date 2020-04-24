@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Donatur;
+namespace App\Controllers;
 
 /**
  * Class BaseController

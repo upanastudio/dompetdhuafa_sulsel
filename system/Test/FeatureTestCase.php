@@ -86,7 +86,7 @@ class FeatureTestCase extends CIDatabaseTestCase
 	 *
 	 * Example routes:
 	 * [
-	 *    ['get', 'home', 'Home::index']
+	 *    ['get', 'home', 'Donasi::index']
 	 * ]
 	 *
 	 * @param array $routes
