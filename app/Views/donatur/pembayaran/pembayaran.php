@@ -35,7 +35,7 @@
                         <li>Di mohon untuk melakukan konfirmasi donasi maksimal 1 x 24 Jam setelah melakukan donasi</li>
                     </ul>
                     <p>
-                        Dan silahkan melakukan konfirmasi pembayaran donasi disini <a href="<?= $konfirmasi_donasi ?>" target="_blank">Konfirmasi Donasi</a>&nbsp;Untuk informasi lebih lanjut, <span id="namaLengkap" name="namaLenkgap">Ahmad Rifaldi<span>&nbsp;dapat menghubungi :
+                        Dan silahkan melakukan konfirmasi pembayaran donasi disini <a href="<?= site_url('donatur/konfirmasi/') . $donasi->noRefensi ?>" target="_blank">Konfirmasi Donasi</a>&nbsp;Untuk informasi lebih lanjut, <span id="namaLengkap" name="namaLenkgap">Ahmad Rifaldi<span>&nbsp;dapat menghubungi :
                     </p>
                     <p>
                         Call Center 0411-4093458<br>
