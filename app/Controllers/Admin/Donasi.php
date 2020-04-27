@@ -13,11 +13,6 @@ class Donasi extends BaseController
 {
     use ResponseTrait;
     public function index(){
-
-		if (!logged_in()) {
-			return redirect()->to('/login');
-		}
-
 		$donasiModel = new DonasiModel();
 
 		//get all data

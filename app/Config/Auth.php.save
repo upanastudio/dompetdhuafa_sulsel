@@ -18,9 +18,9 @@ class Auth extends \Myth\Auth\Config\Auth
 	//--------------------------------------------------------------------
 
 	public $views = [
-		'login' => 'App\Views\auth\login',
-	];
-
+		'login' => 'app10.176.58.239\Views\auth\login',
+	];        // Allow User Registration
+        // Allow User Registration
 	//--------------------------------------------------------------------
 	// Allow User Registration
 	//--------------------------------------------------------------------

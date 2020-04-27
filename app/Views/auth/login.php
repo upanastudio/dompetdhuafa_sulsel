@@ -16,7 +16,7 @@
 	<div class="">
 		<img class="bg-image" src="<?= base_url("template/assets") ?>/media/bg-1.jpg" alt="">
 		<div class="login-form">
-			<form ction="<?= route_to('login') ?>" method="post">
+			<form action="<?= route_to(base_url('admin')) ?>" method="post">
 				<?= csrf_field() ?>
 				<div class="logo-wrapper text-center">
 					<img src="<?= base_url("template/assets") ?>/media/logo_dd.png" alt="AdminLTE Logo" class="brand-image">

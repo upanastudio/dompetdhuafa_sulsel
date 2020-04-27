@@ -14,10 +14,6 @@ class KonfirmasiDonasi extends BaseController
 	use ResponseTrait;
 	public function index()
 	{
-		if (!logged_in()) {
-			return redirect()->to('/login');
-		}
-
 		$konfirmasiDonasiModel = new KonfirmasiDonasiModel();
 
 		//get all data

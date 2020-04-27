@@ -54,11 +54,11 @@
 											<td><?= $item->id_donasi ?></td>
 											<td>
 												<?php if ($item->status == 0) : ?>
-													<span style="width:100%;pointer-events:none" disabled class="btn btn-bold btn-sm btn-font-sm btn-outline-danger">Belum Selesai</span>
-												<?php elseif ($item->status == 1) : ?>
 													<span style="width:100%;pointer-events:none" disabled class="btn btn-bold btn-sm btn-font-sm btn-outline-warning">Menunggu Konfirmasi</span>
-												<?php elseif ($item->status == 2) : ?>
+												<?php elseif ($item->status == 1) : ?>
 													<span style="width:100%;pointer-events:none" disabled class="btn btn-bold btn-sm btn-font-sm btn-outline-success">Selesai</span>
+												<?php elseif ($item->status == 2) : ?>
+													<span style="width:100%;pointer-events:none" disabled class="btn btn-bold btn-sm btn-font-sm btn-outline-danger">Belum Selesai</span>
 												<?php endif; ?>
 											</td>
 											<td>Rp. <?= $item->total_pembayaran ?></td>

@@ -14,10 +14,6 @@ class Donatur extends BaseController
 	use ResponseTrait;
 	public function index()
 	{
-		if (!logged_in()) {
-			return redirect()->to('/login');
-		}
-
 		$donaturModel = new DonaturModel();
 
 		//get all data
@@ -33,6 +29,6 @@ class Donatur extends BaseController
 			'css'               => 'admin/donatur/css/view',
 			'data'				=> $data
 		];
-		return View('Admin/_layout/wrapper', $data);
+		return View('admin/_layout/wrapper', $data);
 	}
 }
