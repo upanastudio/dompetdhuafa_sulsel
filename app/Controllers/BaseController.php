@@ -27,7 +27,7 @@ class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = ['url', 'form', 'text', 'my_url_helper'];
+    protected $helpers = ['url', 'form', 'text', 'my_url_helper', 'upload_helper'];
 
     /**
      * Constructor.
