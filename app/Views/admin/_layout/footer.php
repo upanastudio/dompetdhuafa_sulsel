@@ -22,7 +22,7 @@
         $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
-    <script src="<?= $assets_url ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= $assets_url ?>plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?= $assets_url ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <script src="<?= $assets_url ?>js/adminlte.js"></script>
 

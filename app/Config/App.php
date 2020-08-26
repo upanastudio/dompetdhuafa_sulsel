@@ -23,7 +23,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-    public $baseURL = 'https://projects.upanastudio.com/dompet_dhuafa/';
+    public $baseURL = 'http://localhost:8080';
 
     /*
 	|--------------------------------------------------------------------------
