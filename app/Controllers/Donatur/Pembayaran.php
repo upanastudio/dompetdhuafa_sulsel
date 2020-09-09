@@ -8,7 +8,11 @@ use App\Models\JenisDonasiModel;
 use App\Models\MetodePembayaranModel;
 use App\Models\SubjenisDonasiModel;
 use App\Models\TargetDonasiModel;
+use App\Models\DataMidtrans;
 use App\Controllers\BaseController;
+
+use App\Libraries\Veritrans;
+use phpDocumentor\Reflection\Types\Null_;
 
 use function App\Helpers\assets;
 use function App\Helpers\homepage_url;
@@ -16,9 +20,13 @@ use function App\Helpers\homepage_url;
 
 class Pembayaran extends BaseController
 {
-    public function _remap($method)
+
+    public function __construct()
     {
-        $this->pembayaran($method);
+        $this->veritrans = new Veritrans();
+        $params = array('server_key' => 'SB-Mid-server-4l2hy6mkMsJDqgMfgrp7XX3g', 'production' => false);
+        $this->veritrans->config($params);
+        $this->loadHelpers('url');
     }
 
     public function index()
@@ -34,8 +42,12 @@ class Pembayaran extends BaseController
         $jdModel = new JenisDonasiModel();
         $sjdModel = new SubjenisDonasiModel();
         $tdModel = new TargetDonasiModel();
+        $datamidtrans = new DataMidtrans();
 
-        $donasiData = $donasiModel->where(['id_donasi' => $noRef])->first();
+        $donasiData = $donasiModel->Where(['id_donasi' => $noRef])->first();
+        $mp = $mpModel->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first();
+        $ambildata = $datamidtrans->getData($donasiData->midtrans_order_id);
+
         $donasi = (object) [
             'noRefensi'         => $donasiData->id_donasi,
             'jenisDonasi'       => $jdModel->where(['id_jenis_donasi' => $donasiData->id_jenis_donasi])->first()->jenis_donasi,
@@ -44,7 +56,7 @@ class Pembayaran extends BaseController
             'nominal'           => $donasiData->nominal,
             'kodeUnik'          => $donasiData->kode_unik,
             'totalPembayaran'   => $donasiData->total_pembayaran,
-            'tanggalTransaksi' => $donasiData->iat,
+            'tanggalTransaksi'  => $donasiData->iat,
         ];
 
         $data = [
@@ -54,10 +66,49 @@ class Pembayaran extends BaseController
             'donasi'            => $donasi,
             'donatur'           => $donaturModel->where(['id_donatur' => $donasiData->id_donatur])->first(),
             'pembayaran'        => $mpModel->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first(),
+            'midtrans'          => ($mp->metode_pembayaran == "Midtrans") ? $ambildata : NULL,
+            'status'            => ($mp->metode_pembayaran == "Midtrans") ? $this->getStatus($donasiData->midtrans_order_id) : NULL,
             'isi'               => 'donatur/pembayaran/pembayaran',
             'js'                => 'donatur/pembayaran/js/pembayaran',
             'css'               => 'donatur/pembayaran/css/pembayaran'
         ];
         echo view('donatur/_layout/wrapper', $data);
+    }
+
+    public function getStatus($order_id)
+    {
+        $data = $this->veritrans->status($order_id);
+        return $data;
+    }
+
+    public function simpan($noRef = NULL)
+    {
+        $datamidtrans = new DataMidtrans();
+        $donasiModel = new DonasiModel();
+        $mpModel = new MetodePembayaranModel();
+        $donasiData = $donasiModel->Where(['id_donasi' => $noRef])->first();
+        $mp = $mpModel->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first();
+        if ($mp->metode_pembayaran == "Midtrans") {
+            $getMidtrans = json_decode($this->request->getVar('result_data'), true);
+            $midtrans = $datamidtrans->getData($getMidtrans['order_id']);
+            if (isset($getMidtrans['order_id']) && !$midtrans) {
+                $datamid = [
+                    'midtrans_order_id' => (!empty($getMidtrans['order_id'])) ? $getMidtrans['order_id'] : NULL,
+                    'waktu_transaksi'   => (!empty($getMidtrans['transaction_time'])) ? $getMidtrans['transaction_time'] : NULL,
+                    'kode_pembayaran'   => (!empty($getMidtrans['payment_code'])) ? $getMidtrans['payment_code'] : NULL,
+                    'bill_key'          => (!empty($getMidtrans['bill_key'])) ? $getMidtrans['bill_key'] : NULL,
+                    'bill_code'         => (!empty($getMidtrans['biller_code'])) ? $getMidtrans['biller_code'] : NULL,
+                    'bank'              => (!empty($getMidtrans['va_numbers'][0]['bank'])) ? $getMidtrans['va_numbers'][0]['bank'] : NULL,
+                    'nomor_va'          => (!empty($getMidtrans['va_numbers'][0]['va_number'])) ? $getMidtrans['va_numbers'][0]['va_number'] : NULL,
+                    'permata_va'        => (!empty($getMidtrans['permata_va_number'])) ? $getMidtrans['permata_va_number'] : NULL,
+                    'status'            => (!empty($getMidtrans['transaction_status'])) ? $getMidtrans['transaction_status'] : NULL
+                ];
+                $datamidtrans->insert($datamid);
+                $donasiModel->set('midtrans_order_id', $getMidtrans['order_id'])->where(['id_donasi' => $donasiData->id_donasi])->update();
+                return redirect()->to('/donatur/pembayaran/pembayaran/' . $donasiData->id_donasi);
+            }
+        } else {
+            return redirect()->to('/donatur/pembayaran/pembayaran/' . $donasiData->id_donasi);
+        }
     }
 }

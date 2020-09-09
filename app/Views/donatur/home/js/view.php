@@ -88,7 +88,6 @@
         var formsubmit = function() {
             $('#submit-btn').click(function(e) {
                 let jd = $('#jenisDonasi option:selected').text();
-
                 if ($("form#form-donasi").valid()) {
                     $.post("<?= site_url('donatur/home/submit-donasi') ?>", $("form#form-donasi").serialize() + '&' + $.param({
                             'jd': jd
@@ -96,7 +95,7 @@
                         .done(function(response) {
                             // console.log(response);
                             if (response.noRef) {
-                                window.location.href = `<?= site_url('donatur/ringkasan/') ?>${response.noRef}`;
+                                window.location.href = `<?= site_url('donatur/ringkasan/ringkasan_donasi/') ?>${response.noRef}`;
                             }
                         })
                         .fail(function() {

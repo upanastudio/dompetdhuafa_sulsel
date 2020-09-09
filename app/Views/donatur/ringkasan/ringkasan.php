@@ -1,6 +1,8 @@
 <main>
     <div class="container">
-        <form>
+        <form action="<?= site_url('donatur/pembayaran/simpan/') . $donasi->noRefensi ?>" id="payment-form" method="POST">
+            <input type="hidden" name="result_type" id="result-type" value="">
+            <input type="hidden" name="result_data" id="result-data" value="">
             <div class="row mt-3">
                 <div class="col-12 ">
                     <h4 class="text-center">Ringkasan Donasi</h4>
@@ -8,6 +10,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="row">
+
                         <div id="pilihanDonasi" class="col-lg-12 mt-3">
                             <div class="wrap-form">
                                 <h5 class="sub-judul mb-4">Pilihan Donasi</h5>
@@ -104,9 +107,19 @@
                             <p>Metode pembayaran menggunakan</p>
                             <img id="metodePembayaran" name="metodePembayaran" class="metode-pembayaran-ringkasan" src="<?= $aset_url . '/media/' . $pembayaran->image ?>" alt="">
                             <p>Silahkan klik tombol bayar untuk melanjutkan ke portal pembayaran</p>
-                            <a href="<?= site_url('donatur/pembayaran/') . $donasi->noRefensi ?>" class="btn btn-lg btn-success">
-                                Bayar Sekarang !
-                            </a>
+                            <?php if ($pembayaran->metode_pembayaran != "Midtrans") : ?>
+                                <div class="bayar_normal">
+                                    <a href="<?= site_url('donatur/pembayaran/pembayaran/') . $donasi->noRefensi ?>" class="btn btn-lg btn-success">
+                                        Bayar Sekarang !
+                                    </a>
+                                </div>
+                            <?php else : ?>
+                                <div class="midtrans">
+                                    <button id="pay-button" type="submit" class="btn btn-lg btn-success" name="pay-button">
+                                        <span id="payment-button-amount">Bayar Sekarang !</span>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

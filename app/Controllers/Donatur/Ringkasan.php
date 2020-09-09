@@ -10,15 +10,12 @@ use App\Models\SubjenisDonasiModel;
 use App\Models\TargetDonasiModel;
 use App\Controllers\BaseController;
 
+
 use function App\Helpers\assets;
 use function App\Helpers\homepage_url;
 
 class Ringkasan extends BaseController
 {
-    public function _remap($method)
-    {
-        $this->ringkasan_donasi($method);
-    }
 
     public function index()
     {
@@ -35,6 +32,11 @@ class Ringkasan extends BaseController
         $tdModel = new TargetDonasiModel();
 
         $donasiData = $donasiModel->where(['id_donasi' => $noRef])->first();
+        $mp = $mpModel->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first();
+        if ($mp->metode_pembayaran == "Midtrans" && $donasiData->midtrans_order_id != NULL) {
+            return redirect()->to('/donatur/pembayaran/pembayaran/' . $donasiData->id_donasi);
+        }
+
         $donasi = (object) [
             'noRefensi'         => $donasiData->id_donasi,
             'jenisDonasi'       => $jdModel->where(['id_jenis_donasi' => $donasiData->id_jenis_donasi])->first()->jenis_donasi,
@@ -53,7 +55,7 @@ class Ringkasan extends BaseController
             'donatur'           => $donaturModel->where(['id_donatur' => $donasiData->id_donatur])->first(),
             'pembayaran'        => $mpModel->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first(),
             'isi'               => 'donatur/ringkasan/ringkasan',
-            'js'                => '',
+            'js'                => 'donatur/ringkasan/js/ringkasan',
             'css'               => ''
         ];
         echo view('donatur/_layout/wrapper', $data);

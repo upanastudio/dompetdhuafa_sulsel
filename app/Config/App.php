@@ -7,7 +7,7 @@ use CodeIgniter\Config\BaseConfig;
 class App extends BaseConfig
 {
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Base Site URL
 	|--------------------------------------------------------------------------
@@ -23,9 +23,9 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-    public $baseURL = 'http://localhost:8080';
+	public $baseURL = 'http://localhost:8080';
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Index File
 	|--------------------------------------------------------------------------
@@ -35,9 +35,9 @@ class App extends BaseConfig
 	| variable so that it is blank.
 	|
 	*/
-    public $indexPage = '';
+	public $indexPage = '';
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| URI PROTOCOL
 	|--------------------------------------------------------------------------
@@ -52,9 +52,9 @@ class App extends BaseConfig
 	|
 	| WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 	*/
-    public $uriProtocol = 'PATH_INFO';
+	public $uriProtocol = 'PATH_INFO';
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Default Locale
 	|--------------------------------------------------------------------------
@@ -65,9 +65,9 @@ class App extends BaseConfig
 	| should run under for this request.
 	|
 	*/
-    public $defaultLocale = 'en';
+	public $defaultLocale = 'en';
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Negotiate Locale
 	|--------------------------------------------------------------------------
@@ -78,9 +78,9 @@ class App extends BaseConfig
 	| If false, no automatic detection will be performed.
 	|
 	*/
-    public $negotiateLocale = false;
+	public $negotiateLocale = false;
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Supported Locales
 	|--------------------------------------------------------------------------
@@ -90,9 +90,9 @@ class App extends BaseConfig
 	| found, the first locale will be used.
 	|
 	*/
-    public $supportedLocales = ['en'];
+	public $supportedLocales = ['en'];
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Application Timezone
 	|--------------------------------------------------------------------------
@@ -101,9 +101,9 @@ class App extends BaseConfig
 	| dates with the date helper, and can be retrieved through app_timezone()
 	|
 	*/
-    public $appTimezone = 'America/Chicago';
+	public $appTimezone = 'America/Chicago';
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Default Character Set
 	|--------------------------------------------------------------------------
@@ -114,9 +114,9 @@ class App extends BaseConfig
 	| See http://php.net/htmlspecialchars for a list of supported charsets.
 	|
 	*/
-    public $charset = 'UTF-8';
+	public $charset = 'UTF-8';
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| URI PROTOCOL
 	|--------------------------------------------------------------------------
@@ -126,9 +126,9 @@ class App extends BaseConfig
 	| secure, the user will be redirected to a secure version of the page
 	| and the HTTP Strict Transport Security header will be set.
 	*/
-    public $forceGlobalSecureRequests = false;
+	public $forceGlobalSecureRequests = false;
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Session Variables
 	|--------------------------------------------------------------------------
@@ -183,15 +183,15 @@ class App extends BaseConfig
 	| except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 	|
 	*/
-    public $sessionDriver            = 'CodeIgniter\Session\Handlers\FileHandler';
-    public $sessionCookieName        = 'ci_session';
-    public $sessionExpiration        = 7200;
-    public $sessionSavePath          = WRITEPATH . 'session';
-    public $sessionMatchIP           = false;
-    public $sessionTimeToUpdate      = 300;
-    public $sessionRegenerateDestroy = false;
+	public $sessionDriver            = 'CodeIgniter\Session\Handlers\FileHandler';
+	public $sessionCookieName        = 'ci_session';
+	public $sessionExpiration        = 7200;
+	public $sessionSavePath          = WRITEPATH . 'session';
+	public $sessionMatchIP           = false;
+	public $sessionTimeToUpdate      = 300;
+	public $sessionRegenerateDestroy = false;
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Cookie Related Variables
 	|--------------------------------------------------------------------------
@@ -206,13 +206,13 @@ class App extends BaseConfig
 	|       'cookie_httponly') will also affect sessions.
 	|
 	*/
-    public $cookiePrefix   = '';
-    public $cookieDomain   = '';
-    public $cookiePath     = '/';
-    public $cookieSecure   = false;
-    public $cookieHTTPOnly = false;
+	public $cookiePrefix   = '';
+	public $cookieDomain   = '';
+	public $cookiePath     = '/';
+	public $cookieSecure   = false;
+	public $cookieHTTPOnly = false;
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Reverse Proxy IPs
 	|--------------------------------------------------------------------------
@@ -228,9 +228,9 @@ class App extends BaseConfig
 	| Comma-separated:	'10.0.1.200,192.168.5.0/24'
 	| Array:		array('10.0.1.200', '192.168.5.0/24')
 	*/
-    public $proxyIPs = '';
+	public $proxyIPs = '';
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Cross Site Request Forgery
 	|--------------------------------------------------------------------------
@@ -245,14 +245,14 @@ class App extends BaseConfig
 	| CSRFRegenerate  = Regenerate token on every submission
 	| CSRFRedirect    = Redirect to previous page with error on failure
 	*/
-    public $CSRFTokenName  = 'csrf_test_name';
-    public $CSRFHeaderName = 'X-CSRF-TOKEN';
-    public $CSRFCookieName = 'csrf_cookie_name';
-    public $CSRFExpire     = 7200;
-    public $CSRFRegenerate = true;
-    public $CSRFRedirect   = true;
+	public $CSRFTokenName  = 'csrf_test_name';
+	public $CSRFHeaderName = 'X-CSRF-TOKEN';
+	public $CSRFCookieName = 'csrf_cookie_name';
+	public $CSRFExpire     = 7200;
+	public $CSRFRegenerate = true;
+	public $CSRFRedirect   = true;
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Content Security Policy
 	|--------------------------------------------------------------------------
@@ -266,5 +266,5 @@ class App extends BaseConfig
 	|   - http://www.html5rocks.com/en/tutorials/security/content-security-policy/
 	|   - http://www.w3.org/TR/CSP/
 	*/
-    public $CSPEnabled = false;
+	public $CSPEnabled = false;
 }

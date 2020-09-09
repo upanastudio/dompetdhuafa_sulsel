@@ -19,4 +19,8 @@ class Workshop extends BaseController
         var_dump($ini);
         die();
     }
+    public function ulang()
+    {
+        return redirect()->to(base_url('donatur/pembayaran/3182745920136689'));
+    }
 }
