@@ -24,7 +24,7 @@ class Pembayaran extends BaseController
     public function __construct()
     {
         $this->veritrans = new Veritrans();
-        $params = array('server_key' => 'SB-Mid-server-4l2hy6mkMsJDqgMfgrp7XX3g', 'production' => false);
+        $params = array('server_key' => 'SB-Mid-server-poFGjIcib1juVC79kIpofE4N', 'production' => false);
         $this->veritrans->config($params);
         $this->loadHelpers('url');
     }

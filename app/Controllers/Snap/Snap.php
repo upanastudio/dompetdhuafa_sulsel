@@ -19,7 +19,7 @@ class Snap extends BaseController
         header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
         $this->midtrans = new Midtrans();
-        $params = array('server_key' => 'SB-Mid-server-4l2hy6mkMsJDqgMfgrp7XX3g', 'production' => false);
+        $params = array('server_key' => 'SB-Mid-server-poFGjIcib1juVC79kIpofE4N', 'production' => false);
         $this->midtrans->config($params);
         $this->loadHelpers('url');
     }
