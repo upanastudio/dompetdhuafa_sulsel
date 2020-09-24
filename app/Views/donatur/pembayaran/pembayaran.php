@@ -33,7 +33,7 @@
                                                     echo "Gagal Melakukan Pembayaran";
                                                 }
                                                 ?></li>
-                            <li>Jumlah Donasi : <span id="jumlah-donasi" name="jumlah-donasi"><?= $hasil_rupiah = "Rp " . number_format($donasi->totalPembayaran, 2, ',', '.'); ?></span>
+
                         </ul>
                         <p>Berikut resume pembayaran dari midtrans</p>
                         <ul>
@@ -53,73 +53,71 @@
                                                         echo "-";
                                                     }
                                                     ?></li>
-                            <li>Kode Pembayaran : <?php if (isset($midtrans['payment_code'])) {
-                                                        echo $midtrans['payment_code'];
-                                                    } elseif (isset($midtrans['kode_pembayaran'])) {
-                                                        echo $midtrans['kode_pembayaran'];
-                                                    } else {
-                                                        echo "-";
-                                                    } ?></li>
-                            <li>Tempat Bayar : <?php if (isset($status->store)) {
-                                                    echo $status->store;
-                                                } else {
-                                                    echo "-";
-                                                } ?> </li>
-                            <li>Tipe Pembayaran : <?php if ($status->payment_type == "gopay") {
-                                                        echo "Gopay";
-                                                    } elseif ($status->payment_type == "credit_card") {
-                                                        echo "Kartu Kredit";
-                                                    } elseif ($status->payment_type == "cstore") {
-                                                        echo "CS Store";
-                                                    } else {
-                                                        echo "-";
-                                                    } ?> </li>
-                            <li>Bill Key : <?php
-                                            if (isset($midtrans['bill_key'])) {
-                                                echo $midtrans['bill_key'];
-                                            } else {
-                                                echo "-";
-                                            }
-                                            ?></li>
-                            <li>Bill Kode : <?php
-                                            if (isset($midtrans['biller_code'])) {
-                                                echo $midtrans['biller_code'];
-                                            } elseif (isset($midtrans['bill_code'])) {
-                                                echo $midtrans['bill_code'];
-                                            } else {
-                                                echo "-";
-                                            }
-                                            ?></li>
-                            <li>Bank : <?php
-                                        if (isset($midtrans['va_numbers'][0]['bank'])) {
-                                            echo $midtrans['va_numbers'][0]['bank'];
-                                        } elseif (isset($midtrans['bank'])) {
-                                            echo $midtrans['bank'];
-                                        } elseif (isset($status->bank)) {
-                                            echo $status->bank;
-                                        } else {
-                                            echo "-";
-                                        }
-                                        ?></td>
-                            </li>
-                            <li>Nomor virtual akun : <?php
-                                                        if (isset($midtrans['va_numbers'][0]['va_number'])) {
-                                                            echo $midtrans['va_numbers'][0]['va_number'];
-                                                        } elseif (isset($midtrans['nomor_va'])) {
-                                                            echo $midtrans['nomor_va'];
-                                                        } else {
-                                                            echo "-";
-                                                        }
-                                                        ?></li>
-                            <li>Virtual akun permata : <?php
-                                                        if (isset($midtrans['permata_va_number'])) {
-                                                            echo $midtrans['permata_va_number'];
-                                                        } elseif (isset($midtrans['permata_va'])) {
-                                                            echo $midtrans['permata_va'];
-                                                        } else {
-                                                            echo "-";
-                                                        }
-                                                        ?></li>
+                            <?php if (isset($midtrans['payment_code'])) {
+                                echo "<li>Kode Pembayaran :" . $midtrans['payment_code'];
+                            } elseif (isset($midtrans['kode_pembayaran'])) {
+                                echo "<li>Kode Pembayaran :" . $midtrans['kode_pembayaran'] . "</li>";
+                            } else {
+                                echo "";
+                            } ?>
+                            <?php if (isset($status->store)) {
+                                echo "<li>Tempat Bayar :" . $status->store . "</li>";
+                            } else {
+                                echo "";
+                            } ?>
+                            <?php if ($status->payment_type == "gopay") {
+                                echo "<li>Tipe Pembayaran : Gopay </li>";
+                            } elseif ($status->payment_type == "credit_card") {
+                                echo "<li>Tipe Pembayaran : Kartu Kredit </li>";
+                            } elseif ($status->payment_type == "cstore") {
+                                echo "<li>Tipe Pembayaran : CS Store </li>";
+                            } elseif ($status->payment_type == "bank_transfer") {
+                                echo "<li>Tipe Pembayaran : Bank Transfer </li>";
+                            } else {
+                                echo "";
+                            } ?>
+                            <?php if (isset($midtrans['bill_key'])) {
+                                echo "<li>Bill Key : " . $midtrans['bill_key'] . "</li>";
+                            } else {
+                                echo "";
+                            }
+                            ?>
+                            <?php if (isset($midtrans['biller_code'])) {
+                                echo "<li>Bill Kode : " . $midtrans['biller_code'] . "</li>";
+                            } elseif (isset($midtrans['bill_code'])) {
+                                echo "<li>Bill Kode : " . $midtrans['bill_code'] . "</li>";
+                            } else {
+                                echo "";
+                            }
+                            ?>
+                            <?php if (isset($midtrans['va_numbers'][0]['bank'])) {
+                                echo "<li>Bank : " . $midtrans['va_numbers'][0]['bank'] . "</li>";
+                            } elseif (isset($midtrans['bank'])) {
+                                echo "<li>Bank : " . $midtrans['bank'] . "</li>";
+                            } elseif (isset($status->bank)) {
+                                echo "<li>Bank : " . $status->bank . "</li>";
+                            } else {
+                                echo "";
+                            }
+                            ?>
+                            <?php if (isset($midtrans['va_numbers'][0]['va_number'])) {
+                                echo "<li>No. Virtual Akun : " . $midtrans['va_numbers'][0]['va_number'] . "</li>";
+                            } elseif (isset($midtrans['nomor_va'])) {
+                                echo "<li>No. Virtual Akun : " . $midtrans['nomor_va'] . "</li>";
+                            } else {
+                                echo "";
+                            }
+                            ?></li>
+                            <?php
+                            if (isset($midtrans['permata_va_number'])) {
+                                echo "<li>No .Virtual Akun Permata :" .  $midtrans['permata_va_number'] . "</li>";
+                            } elseif (isset($midtrans['permata_va'])) {
+                                echo "<li>No. Virtual Akun Permata :" . $midtrans['permata_va'] . "</li>";
+                            } else {
+                                echo "";
+                            }
+                            ?>
+                            <li>Jumlah Donasi : <span id="jumlah-donasi" name="jumlah-donasi"><?= $hasil_rupiah = "Rp " . number_format($donasi->totalPembayaran, 2, ',', '.'); ?></span></li>
 
                         </ul>
                         <p><strong>Keterangan :</strong></p>
