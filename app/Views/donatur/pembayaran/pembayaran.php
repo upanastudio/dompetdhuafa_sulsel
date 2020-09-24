@@ -22,7 +22,13 @@
                                                 } elseif ($status->transaction_status == "capture") {
                                                     echo "Pembayaran Telah Selesai";
                                                 } elseif ($status->transaction_status == "deny") {
-                                                    echo "Pembayaran Telah Selesai";
+                                                    echo "Gagal Melakukan Pembayaran";
+                                                } elseif ($status->transaction_status == "cancel") {
+                                                    echo "Pembayaran Dibatalkan";
+                                                } elseif ($status->transaction_status == "expire") {
+                                                    echo "Transaksi Anda Expired";
+                                                } elseif ($status->transaction_status == "pending") {
+                                                    echo "Pembayaran Pending";
                                                 } else {
                                                     echo "Gagal Melakukan Pembayaran";
                                                 }
