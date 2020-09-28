@@ -432,7 +432,7 @@
 									<div class="custom-control custom-radio mb-3">
 										<input type="radio" class="custom-control-input" id="metodePembayaran8" name="metodePembayaran" value="Midtrans">
 										<label class="custom-control-label" for="metodePembayaran8">
-											<img src="<?= $aset_url ?>media/logo-midtrans.png" width="550" height="40" alt="">
+											<img src="<?= $aset_url ?>media/logo-midtrans.png" alt="">
 
 										</label>
 									</div>
