@@ -14,8 +14,7 @@
                             <li>No. Referensi : <?= $donasi->noRefensi ?></li>
                             <li>Tanggal Transaksi : <?= $donasi->tanggalTransaksi ?></li>
                             <li>Jenis Donasi : <?= $donasi->jenisDonasi ?></li>
-                            <li>Status Bayar : <?php
-                                                if ($status->transaction_status == "settlement") {
+                            <li>Status Bayar : <?php if ($status->transaction_status == "settlement") {
                                                     echo "Pembayaran Telah Selesai";
                                                 } elseif ($status->transaction_status == "pending") {
                                                     echo "Pembayaran Belum Anda Lakukan";
@@ -80,16 +79,14 @@
                                 echo "<li>Bill Key : " . $midtrans['bill_key'] . "</li>";
                             } else {
                                 echo "";
-                            }
-                            ?>
+                            } ?>
                             <?php if (isset($midtrans['biller_code'])) {
                                 echo "<li>Bill Kode : " . $midtrans['biller_code'] . "</li>";
                             } elseif (isset($midtrans['bill_code'])) {
                                 echo "<li>Bill Kode : " . $midtrans['bill_code'] . "</li>";
                             } else {
                                 echo "";
-                            }
-                            ?>
+                            } ?>
                             <?php if (isset($midtrans['va_numbers'][0]['bank'])) {
                                 echo "<li>Bank : " . $midtrans['va_numbers'][0]['bank'] . "</li>";
                             } elseif (isset($midtrans['bank'])) {
@@ -98,8 +95,7 @@
                                 echo "<li>Bank : " . $status->bank . "</li>";
                             } else {
                                 echo "";
-                            }
-                            ?>
+                            } ?>
                             <?php if (isset($midtrans['va_numbers'][0]['va_number'])) {
                                 echo "<li>No. Virtual Akun : " . $midtrans['va_numbers'][0]['va_number'] . "</li>";
                             } elseif (isset($midtrans['nomor_va'])) {
