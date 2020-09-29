@@ -22,15 +22,15 @@
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<?php $uri = current_url(true); ?>
 				<li class="nav-item">
-					<a href="<?= $admin_url ?>/donasi" class="nav-link <?= ($uri->getSegment(4) == 'donasi' || $uri->getSegment(4) == '') ? "active" : "" ?>">
+					<a href="<?= $admin_url ?>/donasi" class="nav-link <?= ($uri->getSegment(3) == 'donasi' || $uri->getSegment(3) == '') ? "active" : "" ?>">
 						<i class="nav-icon fas fa-coins"></i>
 						<p></p>
-							Donasi
+						Donasi
 						</p>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= $admin_url ?>/donatur" class="nav-link <?= ($uri->getSegment(4) == 'donatur') ? "active" : "" ?>">
+					<a href="<?= $admin_url ?>/donatur" class="nav-link <?= ($uri->getSegment(3) == 'donatur') ? "active" : "" ?>">
 						<i class="nav-icon fas fa-users"></i>
 						<p>
 							Donatur
@@ -38,10 +38,18 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= $admin_url ?>/konfirmasi-donasi" class="nav-link <?= ($uri->getSegment(4) == 'konfirmasi-donasi') ? "active" : "" ?>">
+					<a href="<?= $admin_url ?>/konfirmasi-donasi" class="nav-link <?= ($uri->getSegment(3) == 'konfirmasi-donasi') ? "active" : "" ?>">
 						<i class="nav-icon fas fa-clipboard-list"></i>
 						<p>
 							Konfirmasi Donasi
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="<?= $admin_url ?>/midtrans" class="nav-link <?= ($uri->getSegment(3) == 'midtrans') ? "active" : "" ?>">
+						<i class="nav-icon fas fa-shopping-cart"></i>
+						<p>
+							Midtrans
 						</p>
 					</a>
 				</li>

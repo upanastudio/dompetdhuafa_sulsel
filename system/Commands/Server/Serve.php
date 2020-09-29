@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CodeIgniter
  *
@@ -129,8 +130,7 @@ class Serve extends BaseCommand
 	public function run(array $params)
 	{
 		// Valid PHP Version?
-		if (phpversion() < $this->minPHPVersion)
-		{
+		if (phpversion() < $this->minPHPVersion) {
 			die('Your PHP version must be ' . $this->minPHPVersion .
 				' or higher to run CodeIgniter. Current version: ' . phpversion());
 		}
@@ -161,5 +161,4 @@ class Serve extends BaseCommand
 			$this->run($params);
 		}
 	}
-
 }

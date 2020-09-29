@@ -53,14 +53,14 @@
                                                     }
                                                     ?></li>
                             <?php if (isset($midtrans['payment_code'])) {
-                                echo "<li>Kode Pembayaran :" . $midtrans['payment_code'];
+                                echo "<li>Kode Pembayaran : " . $midtrans['payment_code'];
                             } elseif (isset($midtrans['kode_pembayaran'])) {
-                                echo "<li>Kode Pembayaran :" . $midtrans['kode_pembayaran'] . "</li>";
+                                echo "<li>Kode Pembayaran : " . $midtrans['kode_pembayaran'] . "</li>";
                             } else {
                                 echo "";
                             } ?>
                             <?php if (isset($status->store)) {
-                                echo "<li>Tempat Bayar :" . $status->store . "</li>";
+                                echo "<li>Tempat Bayar : " . $status->store . "</li>";
                             } else {
                                 echo "";
                             } ?>

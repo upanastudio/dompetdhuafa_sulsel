@@ -47,6 +47,13 @@ class Pembayaran extends BaseController
         $donasiData = $donasiModel->Where(['id_donasi' => $noRef])->first();
         $mp = $mpModel->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first();
         $ambildata = $datamidtrans->getData($donasiData->midtrans_order_id);
+        $stat = $this->getStatus($donasiData->midtrans_order_id);
+        $mid = [
+            'status' => $stat->transaction_status,
+            'store' => (!empty($stat->store)) ? $stat->store : NULL,
+            'payment_type' => (!empty($stat->payment_type)) ? $stat->payment_type : NULL
+        ];
+        $datamidtrans->set($mid)->where(['midtrans_order_id' => $ambildata['midtrans_order_id']])->update();
 
         $donasi = (object) [
             'noRefensi'         => $donasiData->id_donasi,
@@ -72,6 +79,7 @@ class Pembayaran extends BaseController
             'js'                => 'donatur/pembayaran/js/pembayaran',
             'css'               => 'donatur/pembayaran/css/pembayaran'
         ];
+
         echo view('donatur/_layout/wrapper', $data);
     }
 
@@ -81,6 +89,7 @@ class Pembayaran extends BaseController
         return $data;
     }
 
+
     public function simpan($noRef = NULL)
     {
         $datamidtrans = new DataMidtrans();
@@ -88,6 +97,7 @@ class Pembayaran extends BaseController
         $mpModel = new MetodePembayaranModel();
         $donasiData = $donasiModel->Where(['id_donasi' => $noRef])->first();
         $mp = $mpModel->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first();
+
         if ($mp->metode_pembayaran == "Midtrans") {
             $getMidtrans = json_decode($this->request->getVar('result_data'), true);
             $midtrans = $datamidtrans->getData($getMidtrans['order_id']);
