@@ -39,32 +39,32 @@ class DonaturModel extends Model
             ->first();
     }
 
-	public function getDataWithRelations($primaryKey = false)
-	{
-		$db      = \Config\Database::connect();
-		$builder = $db->table($this->table);
-		if ($primaryKey === false) {
-			// return $this->findAll();
-			$builder->select("*");
-			$builder->join('data_donasi', 'data_donatur.id_donatur = data_donasi.id_donatur');
-			$builder->join('master_jenis_donasi', 'master_jenis_donasi.id_jenis_donasi = data_donasi.id_jenis_donasi');
-			$builder->join('master_subjenis_donasi', 'master_subjenis_donasi.id_subjenis_donasi = data_donasi.id_subjenis_donasi');
-			$builder->join('master_target_donasi', 'master_target_donasi.id_target_donasi = data_donasi.id_target_donasi');
-			$builder->join('master_metode_pembayaran', 'master_metode_pembayaran.id_metode_pembayaran = data_donasi.id_metode_pembayaran');
-			$query = $builder->get();
-			return $query->getResult();
-		}
+    public function getDataWithRelations($primaryKey = false)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table($this->table);
+        if ($primaryKey === false) {
+            // return $this->findAll();
+            $builder->select("*");
+            $builder->join('data_donasi', 'data_donatur.id_donatur = data_donasi.id_donatur', 'left');
+            $builder->join('master_jenis_donasi', 'master_jenis_donasi.id_jenis_donasi = data_donasi.id_jenis_donasi', 'left');
+            $builder->join('master_subjenis_donasi', 'master_subjenis_donasi.id_subjenis_donasi = data_donasi.id_subjenis_donasi', 'left');
+            $builder->join('master_target_donasi', 'master_target_donasi.id_target_donasi = data_donasi.id_target_donasi', 'left');
+            $builder->join('master_metode_pembayaran', 'master_metode_pembayaran.id_metode_pembayaran = data_donasi.id_metode_pembayaran', 'left');
+            $query = $builder->get();
+            return $query->getResult();
+        }
 
-		$builder->select("*");
-		$builder->join('data_donasi', 'data_donatur.id_donatur = data_donasi.id_donatur');
-		$builder->join('master_jenis_donasi', 'master_jenis_donasi.id_jenis_donasi = data_donasi.id_jenis_donasi');
-		$builder->join('master_subjenis_donasi', 'master_subjenis_donasi.id_subjenis_donasi = data_donasi.id_subjenis_donasi');
-		$builder->join('master_target_donasi', 'master_target_donasi.id_target_donasi = data_donasi.id_target_donasi');
-		$builder->join('master_metode_pembayaran', 'master_metode_pembayaran.id_metode_pembayaran = data_donasi.id_metode_pembayaran');
-		$builder->where("data_donatur.id_donatur", $primaryKey);
-		$query = $builder->get();
-		return $query->getRow();
-	}
+        $builder->select("*");
+        $builder->join('data_donasi', 'data_donatur.id_donatur = data_donasi.id_donatur', 'left');
+        $builder->join('master_jenis_donasi', 'master_jenis_donasi.id_jenis_donasi = data_donasi.id_jenis_donasi', 'left');
+        $builder->join('master_subjenis_donasi', 'master_subjenis_donasi.id_subjenis_donasi = data_donasi.id_subjenis_donasi', 'left');
+        $builder->join('master_target_donasi', 'master_target_donasi.id_target_donasi = data_donasi.id_target_donasi', 'left');
+        $builder->join('master_metode_pembayaran', 'master_metode_pembayaran.id_metode_pembayaran = data_donasi.id_metode_pembayaran', 'left');
+        $builder->where("data_donatur.id_donatur", $primaryKey);
+        $query = $builder->get();
+        return $query->getRow();
+    }
 
     public function getNewPK()
     {
