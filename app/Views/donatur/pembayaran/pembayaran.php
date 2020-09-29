@@ -31,7 +31,7 @@
                                                 } else {
                                                     echo "Gagal Melakukan Pembayaran";
                                                 }
-                                                ?></li>
+                                                ?> <a href="<?= site_url('/donatur/pembayaran/pembayaran/') . $donasi->noRefensi ?>" class="btn btn-sm btn-success btn-copy no-print">Cek Status</a></li>
 
                         </ul>
                         <p>Berikut resume pembayaran dari midtrans</p>

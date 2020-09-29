@@ -55,6 +55,10 @@ class Pembayaran extends BaseController
                 'payment_type' => (!empty($stat->payment_type)) ? $stat->payment_type : NULL
             ];
             $datamidtrans->set($mid)->where(['midtrans_order_id' => $ambildata['midtrans_order_id']])->update();
+
+            if ($stat->transaction_status == "settlement") {
+                $donasiModel->set('status', '1')->where('id_donasi', $noRef)->update();
+            }
         }
         $donasi = (object) [
             'noRefensi'         => $donasiData->id_donasi,
