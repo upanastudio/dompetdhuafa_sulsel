@@ -14,7 +14,6 @@
 <script src="<?= $aset_url ?>js/jquery.validate.js"></script>
 <script src="<?= $aset_url ?>js/select2.min.js"></script>
 <script src="<?= $aset_url ?>js/selectize.min.js"></script>
-
 <?php if ($js) echo view($js); ?>
 
 </body>
