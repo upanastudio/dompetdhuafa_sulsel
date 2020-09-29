@@ -47,14 +47,15 @@ class Pembayaran extends BaseController
         $donasiData = $donasiModel->Where(['id_donasi' => $noRef])->first();
         $mp = $mpModel->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first();
         $ambildata = $datamidtrans->getData($donasiData->midtrans_order_id);
-        $stat = $this->getStatus($donasiData->midtrans_order_id);
-        $mid = [
-            'status' => $stat->transaction_status,
-            'store' => (!empty($stat->store)) ? $stat->store : NULL,
-            'payment_type' => (!empty($stat->payment_type)) ? $stat->payment_type : NULL
-        ];
-        $datamidtrans->set($mid)->where(['midtrans_order_id' => $ambildata['midtrans_order_id']])->update();
-
+        if ($mp->metode_pembayaran == "Midtrans") {
+            $stat = $this->getStatus($donasiData->midtrans_order_id);
+            $mid = [
+                'status' => $stat->transaction_status,
+                'store' => (!empty($stat->store)) ? $stat->store : NULL,
+                'payment_type' => (!empty($stat->payment_type)) ? $stat->payment_type : NULL
+            ];
+            $datamidtrans->set($mid)->where(['midtrans_order_id' => $ambildata['midtrans_order_id']])->update();
+        }
         $donasi = (object) [
             'noRefensi'         => $donasiData->id_donasi,
             'jenisDonasi'       => $jdModel->where(['id_jenis_donasi' => $donasiData->id_jenis_donasi])->first()->jenis_donasi,
@@ -81,6 +82,8 @@ class Pembayaran extends BaseController
         ];
 
         echo view('donatur/_layout/wrapper', $data);
+        var_dump($data['status']);
+        die();
     }
 
     public function getStatus($order_id)

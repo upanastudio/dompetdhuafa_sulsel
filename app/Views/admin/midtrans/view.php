@@ -36,7 +36,7 @@
 										<th>No Refrensi</th>
 										<th>Tanggal Bayar</th>
 										<th>ID Pembayaran</th>
-										<th>Via Pembayaran</th>
+										<th>Pembayaran Via</th>
 										<th>Jumlah</th>
 										<th>Status</th>
 
@@ -48,7 +48,7 @@
 										<tr>
 											<td><?= ++$counter ?></td>
 											<td><?= $item['id_donasi'] ?></td>
-											<td><?= date_format(date_create($item['waktu_transaksi']), "d M Y") ?></td>
+											<td><?= date_format(date_create($item['waktu_transaksi']), "d F Y") ?></td>
 											<td><?= $item['midtrans_order_id'] ?></td>
 											<td><?php if (!empty($item['bank'])) {
 													echo $item['bank'];
