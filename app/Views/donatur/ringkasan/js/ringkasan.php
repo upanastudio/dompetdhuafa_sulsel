@@ -2,7 +2,6 @@
     $('#pay-button').click(function(event) {
         event.preventDefault();
 
-
         var id = <?= $donasi->kodeUnik ?>;
         var price = <?= $donasi->totalPembayaran ?>;
         var quantity = 1;

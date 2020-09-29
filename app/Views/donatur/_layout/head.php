@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<?= $aset_url ?>css/style.css">
     <link rel="stylesheet" href="<?= $aset_url ?>css/select2.min.css">
     <link href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" rel="stylesheet">
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-GYxgD5hN20etjw5k"></script>
+    <script src="https://app.midtrans.com/snap/v1/transactions" data-client-key="Mid-client-ygUWeaz1xfdhwlhO"></script>
     <?php if ($css) echo view($css); ?>
 
     <title><?= $title ?></title>

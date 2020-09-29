@@ -19,7 +19,7 @@ class Snap extends BaseController
         header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
         $this->midtrans = new Midtrans();
-        $params = array('server_key' => 'SB-Mid-server-poFGjIcib1juVC79kIpofE4N', 'production' => false);
+        $params = array('server_key' => 'Mid-server-cC02PaQTSi5AJewxI90aF8HT', 'production' => true);
         $this->midtrans->config($params);
         $this->loadHelpers('url');
     }
@@ -35,10 +35,10 @@ class Snap extends BaseController
 
         $transaction_details = array(
             'order_id' => rand(),
-            'gross_amount' => $input['gross_amount'], // no decimal allowed for creditcard
+            'gross_amount' => $input['gross_amount'],
         );
 
-        // Optional
+
         $item1_details = array(
             'id' =>  $input['id'],
             'price' => $input['price'],
@@ -46,7 +46,7 @@ class Snap extends BaseController
             'name' => $input['name'],
         );
 
-        // Optional
+
         $customer_details = array(
             'first_name'    => $input['first_name'],
             'last_name'     => "",
@@ -54,10 +54,9 @@ class Snap extends BaseController
             'phone'         => $input['phone'],
         );
 
-        // Data yang akan dikirim untuk request redirect_url.
+
         $credit_card['secure'] = true;
-        //ser save_card true to enable oneclick or 2click
-        //$credit_card['save_card'] = true;
+
 
         $time = time();
 
