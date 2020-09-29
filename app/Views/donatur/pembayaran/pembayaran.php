@@ -106,9 +106,9 @@
                             ?></li>
                             <?php
                             if (isset($midtrans['permata_va_number'])) {
-                                echo "<li>No .Virtual Akun Permata :" .  $midtrans['permata_va_number'] . "</li>";
+                                echo "<li>No .Virtual Akun Permata : " .  $midtrans['permata_va_number'] . "</li>";
                             } elseif (isset($midtrans['permata_va'])) {
-                                echo "<li>No. Virtual Akun Permata :" . $midtrans['permata_va'] . "</li>";
+                                echo "<li>No. Virtual Akun Permata : " . $midtrans['permata_va'] . "</li>";
                             } else {
                                 echo "";
                             }

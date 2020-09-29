@@ -82,8 +82,6 @@ class Pembayaran extends BaseController
         ];
 
         echo view('donatur/_layout/wrapper', $data);
-        var_dump($data['status']);
-        die();
     }
 
     public function getStatus($order_id)
