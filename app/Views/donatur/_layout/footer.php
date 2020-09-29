@@ -14,7 +14,7 @@
 <script src="<?= $aset_url ?>js/jquery.validate.js"></script>
 <script src="<?= $aset_url ?>js/select2.min.js"></script>
 <script src="<?= $aset_url ?>js/selectize.min.js"></script>
-<script src="https://app.sandbox.midtrans.com/snap/v1/transactions" data-client-key="Mid-client-ygUWeaz1xfdhwlhO"></script>
+<!-- <script src="https://app.sandbox.midtrans.com/snap/v1/transactions" data-client-key="Mid-client-ygUWeaz1xfdhwlhO"></script> -->
 <?php if ($js) echo view($js); ?>
 
 </body>
