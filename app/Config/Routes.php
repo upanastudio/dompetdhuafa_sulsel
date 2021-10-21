@@ -44,7 +44,9 @@ $routes->get('api/target-donasi/(:num)', 'Api::getTargetDonasi/$1');
 $routes->get('api/metode-pembayaran/(:alpha)', 'Api::getMetodePembayaran/$1');
 $routes->get('api/sapaan', 'Api::getSapaan');
 $routes->get('api/tipe-donatur', 'Api::getTipeDonatur');
-
+$routes->post('api/submit-donasi', 'Api::submitDonasi');
+$routes->get('api/konfirmasi-donasi/(:num)', 'Api::konfirmasiDonasi/$1');
+$routes->post('api/submit-konfirmasi-donasi', 'Api::submitKonfirmasiDonasi');
 
 /**
  * --------------------------------------------------------------------
