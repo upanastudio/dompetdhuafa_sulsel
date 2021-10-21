@@ -172,32 +172,34 @@ class Api extends BaseController
 
         $donasiData = $donasiModel->where(['id_donasi' => $noRef])->first();
 
-        if ($donasiData->status == '1') {
-            return $this->successResponse(['Donasi sudah dikonfirmasi. Terima kasih.']);
-        } else if ($donasiData->status == '2') {
-            return $this->successResponse(['Donasi sudah expired. Silahkan submit ulang donasi.']);
-        } else {
-            $donasi = (object) [
-                'noRefensi'         => $donasiData->id_donasi,
-                'jenisDonasi'       => $jdModel->where(['id_jenis_donasi' => $donasiData->id_jenis_donasi])->first()->jenis_donasi,
-                'subjenisDonasi'    => ($donasiData->id_subjenis_donasi) ? $sjdModel->where(['id_subjenis_donasi' => $donasiData->id_subjenis_donasi])->first()->subjenis_donasi : '',
-                'targetDonasi'      => ($donasiData->id_target_donasi) ? $tdModel->where(['id_target_donasi' => $donasiData->id_target_donasi])->first()->target_donasi : '',
-                'nominal'           => $donasiData->nominal,
-                'kodeUnik'          => $donasiData->kode_unik,
-                'totalPembayaran'   => $donasiData->total_pembayaran,
-                'tanggalDonasi'     => $donasiData->iat,
-            ];
+        if ($donasiData) {
+            if ($donasiData->status == '1') {
+                return $this->successResponse(['Donasi sudah dikonfirmasi. Terima kasih.']);
+            } else if ($donasiData->status == '2') {
+                return $this->successResponse(['Donasi sudah expired. Silahkan submit ulang donasi.']);
+            } else {
+                $donasi = (object) [
+                    'noRefensi'         => $donasiData->id_donasi,
+                    'jenisDonasi'       => $jdModel->where(['id_jenis_donasi' => $donasiData->id_jenis_donasi])->first()->jenis_donasi,
+                    'subjenisDonasi'    => ($donasiData->id_subjenis_donasi) ? $sjdModel->where(['id_subjenis_donasi' => $donasiData->id_subjenis_donasi])->first()->subjenis_donasi : '',
+                    'targetDonasi'      => ($donasiData->id_target_donasi) ? $tdModel->where(['id_target_donasi' => $donasiData->id_target_donasi])->first()->target_donasi : '',
+                    'nominal'           => $donasiData->nominal,
+                    'kodeUnik'          => $donasiData->kode_unik,
+                    'totalPembayaran'   => $donasiData->total_pembayaran,
+                    'tanggalDonasi'     => $donasiData->iat,
+                ];
 
-            $donatur = $donaturModel->select(['nama_donatur', 'sapaan', 'email', 'telepon', 'alamat', 'tipe_donatur', 'institusi', 'npwp', 'negara', 'provinsi', 'kota', 'kodepos'])->where(['id_donatur' => $donasiData->id_donatur])->first();
+                $donatur = $donaturModel->select(['nama_donatur', 'sapaan', 'email', 'telepon', 'alamat', 'tipe_donatur', 'institusi', 'npwp', 'negara', 'provinsi', 'kota', 'kodepos'])->where(['id_donatur' => $donasiData->id_donatur])->first();
 
-            $pembayaran = $mpModel->select(['metode_pembayaran', 'norek', 'atas_nama', 'type'])->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first();
+                $pembayaran = $mpModel->select(['metode_pembayaran', 'norek', 'atas_nama', 'type'])->where(['id_metode_pembayaran' => $donasiData->id_metode_pembayaran])->first();
 
-            $data = [
-                'donasi'            => $donasi,
-                'donatur'           => $donatur,
-                'pembayaran'        => $pembayaran
-            ];
-            return $this->successResponse($data);
+                $data = [
+                    'donasi'            => $donasi,
+                    'donatur'           => $donatur,
+                    'pembayaran'        => $pembayaran
+                ];
+                return $this->successResponse($data);
+            }
         }
         return $this->failNotFound('No data found!');
     }
