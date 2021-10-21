@@ -179,7 +179,7 @@ class Api extends BaseController
                 return $this->successResponse(['Donasi sudah expired. Silahkan submit ulang donasi.']);
             } else {
                 $donasi = (object) [
-                    'noRefensi'         => $donasiData->id_donasi,
+                    'noRefDonasi'         => $donasiData->id_donasi,
                     'jenisDonasi'       => $jdModel->where(['id_jenis_donasi' => $donasiData->id_jenis_donasi])->first()->jenis_donasi,
                     'subjenisDonasi'    => ($donasiData->id_subjenis_donasi) ? $sjdModel->where(['id_subjenis_donasi' => $donasiData->id_subjenis_donasi])->first()->subjenis_donasi : '',
                     'targetDonasi'      => ($donasiData->id_target_donasi) ? $tdModel->where(['id_target_donasi' => $donasiData->id_target_donasi])->first()->target_donasi : '',
@@ -225,7 +225,7 @@ class Api extends BaseController
             $konfirmasiId = $konfimasiModel->getNewPK();
             $data = [
                 'id_konfirmasi_donasi' => $konfirmasiId,
-                'id_donasi' => $input['noRefrensi'],
+                'id_donasi' => $input['noRefDonasi'],
                 'bank_nama' => $input['bank'],
                 'bank_cabang' => $input['cabangBank'],
                 'bank_norek' => $input['noRekening'],
@@ -235,7 +235,7 @@ class Api extends BaseController
                 'catatan' => $input['catatan']
             ];
             $konfimasiModel->insert($data);
-            $donasiModel->update($input['noRefrensi'], ['status' => '1']);
+            $donasiModel->update($input['noRefDonasi'], ['status' => '1']);
         } else {
             return $this->fail(['message' => 'Upload gambar gagal'], 400);
         }
