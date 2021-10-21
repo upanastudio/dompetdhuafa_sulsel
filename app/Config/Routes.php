@@ -36,6 +36,18 @@ $routes->get('/', 'Donatur\Home::index');
 $routes->match(['get', 'post'], 'donatur/konfirmasi/(:num)', 'Donatur\Konfirmasi::konfirmasi_donasi/$1');
 // $routes->get('donatur/konfirmasi/(:num)', 'Donatur\Konfirmasi::konfirmasi_donasi/$1');
 
+// API
+$routes->get('api/', 'Api::documentation');
+$routes->get('api/jenis-donasi', 'Api::getJenisDonasi');
+$routes->get('api/subjenis-donasi/(:num)', 'Api::getSubJenisDonasi/$1');
+$routes->get('api/target-donasi/(:num)', 'Api::getTargetDonasi/$1');
+$routes->get('api/metode-pembayaran/(:alpha)', 'Api::getMetodePembayaran/$1');
+$routes->get('api/sapaan', 'Api::getSapaan');
+$routes->get('api/tipe-donatur', 'Api::getTipeDonatur');
+$routes->post('api/submit-donasi', 'Api::submitDonasi');
+$routes->get('api/konfirmasi-donasi/(:num)', 'Api::konfirmasiDonasi/$1');
+$routes->post('api/submit-konfirmasi-donasi', 'Api::submitKonfirmasiDonasi');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

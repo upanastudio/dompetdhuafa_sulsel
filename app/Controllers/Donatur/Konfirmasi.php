@@ -101,7 +101,8 @@ class Konfirmasi extends BaseController
                 ];
                 $konfimasiModel->insert($data);
 
-                $donasiModel->set('status', '1')->where('id_donasi', $input['noRefrensi'])->update();
+                $donasiModel->update($input['noRefrensi'], ['status' => '1']);
+                // $donasiModel->set('status', '1')->where('id_donasi', $input['noRefrensi'])->update();
             } else {
                 $this->session->setFlashdata('error', 'Upload gambar gagal!');
                 // return $this->fail(['message' => 'Upload gambar gagal'], 400);
