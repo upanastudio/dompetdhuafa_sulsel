@@ -21,6 +21,11 @@ class Api extends BaseController
     {
     }
 
+    public function documentation()
+    {
+        echo view('api');
+    }
+
     protected function successResponse($data, $statusCode = 200, $message = 'Data Found!')
     {
         $template = [
@@ -33,12 +38,6 @@ class Api extends BaseController
             $template,
             $statusCode
         );
-    }
-
-    public function documentation()
-    {
-        $data = ['error' => ''];
-        echo view('workshop', $data);
     }
 
     public function getJenisDonasi()
