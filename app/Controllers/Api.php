@@ -317,7 +317,7 @@ class Api extends BaseController
 
         helper('number');
 
-        $responseMessageSuccess = 'Dompet Dhuafa Sulsel. Pembayaran donasi Sukses dengan NoRefDonasi: ' . $donasiId . ' sebesar ' . str_replace('IDR', 'Rp', number_to_currency($input['amt'], 'IDR')) . ' dari ' . $input['dtur'] . '. Semoga Allah memberikan pahala atas donasi yang diberikan, memberikan keberkahan atas harta yang tersisa, dan menjadikannya suci dan mensucikan.';
+        $responseMessageSuccess = 'Dompet Dhuafa Sulsel. Pembayaran donasi Sukses dengan NoRefDonasi: ' . $donasiId . ' sebesar ' . str_replace('.00', '', str_replace('IDR', 'Rp', number_to_currency($input['amt'], 'IDR'))) . ' dari ' . $input['dtur'] . '. Semoga Allah memberikan pahala atas donasi yang diberikan, memberikan keberkahan atas harta yang tersisa, dan menjadikannya suci dan mensucikan.';
 
         $responseMessageFail = 'Dompet Dhuafa Sulsel. Pembayaran donasi gagal, silahkan coba lagi.';
 
