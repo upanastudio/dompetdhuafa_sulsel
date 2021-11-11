@@ -302,6 +302,7 @@ class Api extends BaseController
             'nominal'               => $input['amt'],
             'kode_unik'             => $kodeunik,
             'total_pembayaran'      => (int) $nominal,
+            'status'                => '1'
         ];
         $donasiModel->insert($data1);
 
