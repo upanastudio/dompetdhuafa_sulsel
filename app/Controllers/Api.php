@@ -280,7 +280,8 @@ class Api extends BaseController
         $nominal = str_replace('.', '', $input['amt']);
         $kodeunik = mt_rand(1, 9) . random_string('numeric', 2);
         $donasiId = $donasiModel->getNewPK();
-        $id_metode_pembayaran = $mpModel->like(['metode_pembayaran' => $input['pid']])->first()->id_metode_pembayaran;
+        // $id_metode_pembayaran = $mpModel->like(['metode_pembayaran' => $input['pid']])->first()->id_metode_pembayaran;
+        $id_metode_pembayaran = $mpModel->like(['metode_pembayaran' => 'KIOSER'])->first()->id_metode_pembayaran;
 
         if (strtolower($input['type']) == 'zakat') {
             // zakat
