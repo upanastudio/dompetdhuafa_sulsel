@@ -12,11 +12,11 @@ use App\Models\MetodePembayaranModel;
 use App\Models\DonasiModel;
 use App\Models\DonaturModel;
 use App\Models\KonfirmasiDonasiModel;
+use App\Models\DataKioser;
 
 class Api extends BaseController
 {
     use ResponseTrait;
-
     public function index()
     {
     }
@@ -108,7 +108,7 @@ class Api extends BaseController
         $donasiModel = new DonasiModel();
         $donaturModel = new DonaturModel();
         $mpModel = new MetodePembayaranModel();
-        $jdMmodel = new JenisDonasiModel();
+        $jdModel = new JenisDonasiModel();
 
         $exist = $donaturModel->where(['telepon' => $input['noTelp']])->first();
         if (!$exist) {
@@ -130,7 +130,7 @@ class Api extends BaseController
             ];
             $donaturModel->insert($data);
         }
-        $jd = $jdMmodel->where(['id_jenis_donasi' => $input['jenisDonasi']])->first();
+        $jd = $jdModel->where(['id_jenis_donasi' => $input['jenisDonasi']])->first();
         $type = ($jd->jenis_donasi == 'Zakat') ? 'donasi' : 'sedekah';
         $id_metode_pembayaran = $mpModel->where(['metode_pembayaran' => $input['metodePembayaran'], 'type' => $type])->first()->id_metode_pembayaran;
 
@@ -245,6 +245,88 @@ class Api extends BaseController
         } else {
             $this->db->transCommit();
             return $this->successResponse([$message], 201, 'Konfirmasi donasi berhasil!');
+        }
+    }
+
+    public function donasi()
+    {
+        $input = $this->request->getVar(null, FILTER_SANITIZE_STRING);
+        // var_dump($input);
+
+        $this->db->transBegin();
+
+        $donasiModel = new DonasiModel();
+        $donaturModel = new DonaturModel();
+        $jdModel = new JenisDonasiModel();
+        $mpModel = new MetodePembayaranModel();
+        $kioserModel = new DataKioser();
+
+        $exist = $donaturModel->where(['telepon' => $input['dtur']])->first();
+        if (!$exist) {
+            // data_donatur table
+            $donaturId = $donaturModel->getNewPK();
+            $data = [
+                'id_donatur'            => $donaturId,
+                'telepon'               => $input['dtur'],
+                'nama_donatur'          => (isset($input['namaLengkap'])) ? $input['namaLengkap'] : 'KIOSER_USER',
+                'sapaan'                => (isset($input['sapaan'])) ? $input['sapaan'] : 'Saudara',
+                'email'                 => (isset($input['email'])) ? $input['email'] : 'user@kioser.com',
+                'tipe_donatur'          => (isset($input['tipeDonatur'])) ? $input['tipeDonatur'] : 'personal',
+            ];
+
+            $donaturModel->insert($data);
+        }
+
+        $nominal = str_replace('.', '', $input['amt']);
+        $kodeunik = mt_rand(1, 9) . random_string('numeric', 2);
+        $donasiId = $donasiModel->getNewPK();
+        $id_metode_pembayaran = $mpModel->like(['metode_pembayaran' => $input['pid']])->first()->id_metode_pembayaran;
+
+        if (strtolower($input['type']) == 'zakat') {
+            // zakat
+            $getJenisDonasi = $jdModel->like(['jenis_donasi' => $input['type']])->first();
+        } else {
+            //sedekah
+            $getJenisDonasi = $jdModel->like(['jenis_donasi' => 'sedekah'])->first();
+        }
+        $jd = $getJenisDonasi->id_jenis_donasi;
+
+        // data_donasi table
+        $data1 = [
+            'id_donasi'             => $donasiId,
+            'id_donatur'            => (isset($donaturId)) ? $donaturId : $exist->id_donatur,
+            'id_jenis_donasi'       => $jd,
+            'id_subjenis_donasi'    => (isset($input['pengkhususanDonasi'])) ? $input['pengkhususanDonasi'] : null,
+            'id_target_donasi'      => (isset($input['keteranganDonasi'])) ? $input['keteranganDonasi'] : null,
+            'id_metode_pembayaran'  => $id_metode_pembayaran,
+            'nominal'               => $input['amt'],
+            'kode_unik'             => $kodeunik,
+            'total_pembayaran'      => (int) $nominal,
+        ];
+        $donasiModel->insert($data1);
+
+        // data_kioser_detail
+        $data2 = [
+            'id_donasi'             => $donasiId,
+            'kioser_ref_id'         => (isset($input['refID'])) ? $input['refID'] : '',
+            'tipe'                  => $input['type'],
+            'nominal'               => $input['amt'],
+            'telepon'               => $input['dtur'],
+        ];
+        $kioserModel->insert($data2);
+
+        helper('number');
+
+        $responseMessageSuccess = 'Dompet Dhuafa Sulsel. Pembayaran donasi Sukses dengan NoRefDonasi: ' . $donasiId . ' sebesar ' . str_replace('IDR', 'Rp', number_to_currency($input['amt'], 'IDR')) . ' dari ' . $input['dtur'] . '. Semoga Allah memberikan pahala atas donasi yang diberikan, memberikan keberkahan atas harta yang tersisa, dan menjadikannya suci dan mensucikan.';
+
+        $responseMessageFail = 'Dompet Dhuafa Sulsel. Pembayaran donasi gagal, silahkan coba lagi.';
+
+        if ($this->db->transStatus() === FALSE) {
+            $this->db->transRollback();
+            return $this->fail($responseMessageFail, 400);
+        } else {
+            $this->db->transCommit();
+            return $this->respond($responseMessageSuccess, 201);
         }
     }
 }

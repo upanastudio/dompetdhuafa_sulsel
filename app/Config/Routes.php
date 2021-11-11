@@ -48,6 +48,9 @@ $routes->post('api/submit-donasi', 'Api::submitDonasi');
 $routes->get('api/konfirmasi-donasi/(:num)', 'Api::konfirmasiDonasi/$1');
 $routes->post('api/submit-konfirmasi-donasi', 'Api::submitKonfirmasiDonasi');
 
+//new routes for kioser
+$routes->post('api/donate/(:any)', 'Api::donasi');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
