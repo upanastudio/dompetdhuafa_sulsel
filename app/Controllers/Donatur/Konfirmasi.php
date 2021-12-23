@@ -83,7 +83,8 @@ class Konfirmasi extends BaseController
             // Generate a new secure name
             $name = $file->getRandomName();
             // Move the file to it's new home
-            $upload = $file->move(WRITEPATH . 'uploads/receipt/', $name);
+            // $upload = $file->move(WRITEPATH . 'uploads/receipt/', $name);
+            $upload = $file->move('./uploads/', $name);
 
             if ($upload) {
                 $time = Time::parse($input['date']);
