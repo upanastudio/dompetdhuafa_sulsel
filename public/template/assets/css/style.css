@@ -145,7 +145,8 @@
 
 
 #metodePembayaran .custom-radio img {
-    width: 100px;
+    width: auto;
+    height: 30px;
 }
 
 #metodePembayaran .custom-radio {
