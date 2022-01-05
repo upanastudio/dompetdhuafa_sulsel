@@ -394,25 +394,24 @@
 	                                        <img src="<?= $aset_url ?>media/logo-muamalat.png" alt="">
 	                                    </label>
 	                                </div>
-	                                <div class="custom-control custom-radio mb-4">
+	                                <!-- <div class="custom-control custom-radio mb-4">
 	                                    <input type="radio" class="custom-control-input" id="metodePembayaran4" name="metodePembayaran" value="Midtrans">
 	                                    <label class="custom-control-label" for="metodePembayaran4">
 	                                        <img src="<?= $aset_url ?>media/logo-midtrans.png" alt="">
 	                                    </label><br>
-
 	                                </div>
 	                                Metode Pembayaran terdapat dalam Midtrans<br>
 	                                <label class="mt-2">
 	                                    <img src="<?= $aset_url ?>media/logo-gopay.png" width="70" heigh="15" alt="">
 	                                    <img src="<?= $aset_url ?>media/logo-indomaret.png" width="70" heigh="15" alt="">
 	                                    <img src="<?= $aset_url ?>media/logo-alfmart.png" width="70" heigh="15" alt="">
-	                                </label>
+	                                </label> -->
 
 	                            </div>
 
 	                            <div class="form-group" id="metode-sedekah" style="display: none">
 	                                <div class="custom-control custom-radio mb-4">
-	                                    <input type="radio" class="custom-control-input" id="metodePembayaran5" name="metodePembayaran" value="BNI Syariah">
+	                                    <input type="radio" class="custom-control-input" id="metodePembayaran5" name="metodePembayaran" value="BNI">
 	                                    <label class="custom-control-label" for="metodePembayaran5">
 	                                        <img src="<?= $aset_url ?>media/logo-bni.png" alt="">
 	                                    </label>
@@ -447,7 +446,7 @@
 	                                        <img src="<?= $aset_url ?>media/logo-cimb.png" alt="">
 	                                    </label>
 	                                </div>
-	                                <div class="custom-control custom-radio mb-4">
+	                                <!-- <div class="custom-control custom-radio mb-4">
 	                                    <input type="radio" class="custom-control-input" id="metodePembayaran8" name="metodePembayaran" value="Midtrans">
 	                                    <label class="custom-control-label" for="metodePembayaran8">
 	                                        <img src="<?= $aset_url ?>media/logo-midtrans.png" alt="">
@@ -459,7 +458,7 @@
 	                                    <img src="<?= $aset_url ?>media/logo-gopay.png" width="70" heigh="15" alt="">
 	                                    <img src="<?= $aset_url ?>media/logo-indomaret.png" width="70" heigh="15" alt="">
 	                                    <img src="<?= $aset_url ?>media/logo-alfmart.png" width="70" heigh="15" alt="">
-	                                </label>
+	                                </label> -->
 	                            </div>
 	                        </div>
 	                        <div class="card-footer text-muted text-center">
